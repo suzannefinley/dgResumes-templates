@@ -10,9 +10,11 @@ export type Resume = {
   phone?: string | null;
   title?: string | null;
   personalImageUrl?: string | null;
+  resumeUploadUrl?: string | null;
   introVideo?: string | null;
   socialMedia?: ResumeSocialMedia | unknown;
   skills?: ResumeSkillItem[] | unknown;
+  awards?: ResumeAwardItem[] | unknown;
   certifications?: ResumeCertificationItem[] | unknown;
   experience?: ResumeExperienceItem[] | unknown;
   education?: ResumeEducationItem[] | unknown;
@@ -53,6 +55,7 @@ export type PortfolioProject = {
   github?: string | null;
   //projectImageFileName?: string | undefined;
   projectImageUrl?: string | null;
+  technologies?: string | null;
   //projectImageUploadFileId?: number | null | undefined;
 };
 
@@ -75,4 +78,11 @@ export type ResumeSocialMedia = {
   linkedin?: string | undefined;
   instagram?: string | undefined;
   youtube?: string | undefined;
+};
+
+export type ResumeAwardItem = {
+  description: string;
+  awardName: string;
+  company?: string | undefined;
+  awardDate?: string | undefined;
 };

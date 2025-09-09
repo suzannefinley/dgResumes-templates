@@ -171,6 +171,7 @@ export const subscriberresume = pgTable(
     education: jsonb(),
     reviews: jsonb(),
     skills: jsonb(),
+    awards: jsonb(),
     experience: jsonb(),
     email: text(),
     introVideo: text(),
@@ -244,6 +245,7 @@ export const project = pgTable(
     endDate: timestamp({ precision: 6, mode: 'string' }),
     projectImageId: integer('projectImage_idx'),
     description: text(),
+    technologies: text(),
     website: text(),
     github: text(),
     createdAt: timestamp({ precision: 6, mode: 'string' })

@@ -17,7 +17,8 @@ export async function getResumeByUrl(rUrl?: string) {
   if (!rUrl) throw new Error('getResumeByUrl Missing the Url');
 
   const sr = alias(subscriberresume, 'sr');
-  const uf = alias(uploadfile, 'uf');
+  const ufp = alias(uploadfile, 'ufp');
+  const ufr = alias(uploadfile, 'ufr');
   const t = alias(template, 't');
 
   try {
@@ -29,20 +30,24 @@ export async function getResumeByUrl(rUrl?: string) {
         email: sr.email,
         personalName: sr.personalName,
         tagLine: sr.tagLine,
+        introVideo: sr.introVideo,
         introduction: sr.introduction,
         experience: sr.experience,
         education: sr.education,
         skills: sr.skills,
+        awards: sr.awards,
         reviews: sr.reviews,
         certifications: sr.certifications,
         socialMedia: sr.socialMedia,
         resumeStatus: sr.resumeStatus,
         templateName: t.name,
-        personalImageUrl: uf.uploadFileUrl
+        personalImageUrl: ufp.uploadFileUrl,
+        resumeUploadUrl: ufr.uploadFileUrl
       })
       .from(sr)
       .leftJoin(t, eq(sr.templateId, t.templateId))
-      .leftJoin(uf, eq(sr.resumePersonalImageId, uf.uploadFileId))
+      .leftJoin(ufp, eq(sr.resumePersonalImageId, ufp.uploadFileId))
+      .leftJoin(ufr, eq(sr.resumeUploadId, ufr.uploadFileId))
       .where(eq(sr.url, rUrl));
 
     if (!resume) throw new Error('getResumeByUrl Resume not found');
@@ -72,12 +77,14 @@ export async function getProjectsByResumeId(resumeId: number) {
         endDate: p.endDate,
         website: p.website,
         github: p.github,
+        technologies: p.technologies,
         projectImageUrl: uf.uploadFileUrl
       })
       .from(p)
       .leftJoin(uf, eq(p.projectImageId, uf.uploadFileId))
       .where(eq(p.resumeId, resumeId));
 
+    //console.log('projects from getProjectsByResumeId: ', projects);
     return projects;
   } catch (error) {
     console.error('Error in getProjectsByResumeId:', error);
