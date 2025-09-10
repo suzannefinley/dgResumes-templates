@@ -84,127 +84,138 @@ const Ocean = ({
         </nav>
 
         {/* Hero Section */}
-        <section className="bg-gray-100 py-6 my-6">
-          <div className="px-10">
-            {/* <div className="absolute inset-0 z-0 p-4 ">
-              <Image
-                src={bg}
-                className=""
-                quality={100}
-                placeholder="blur"
-                fill
-                style={{ objectFit: 'cover' }}
-                alt="Ocean waves with rocks"
-              />
-            </div> */}
-            <div className="my-auto mx-auto px-4 flex items-center justify-start">
-              <div className="flex-col  gap-5  text-left py-6 px-4  items-center justify-center bg-gray-100 text-blue-900">
-                <div className="flex flex-col md:flex-row gap-15 items-center justify-center">
-                  {resume.personalImageUrl && (
-                    <div className="flex my-2 transition-all duration-300 transform hover:-translate-y-2 overflow-hidden">
-                      <Image
-                        src={resume.personalImageUrl}
-                        alt={resume.personalName || 'Profile Image'}
-                        width={150}
-                        height={150}
-                        className="w-50 h-50 rounded-full object-cover border-1 border-gray-300 relative "
-                      />
-                    </div>
-                  )}
-                  {resume.introVideo && (
-                    <div className="flex  my-2">
-                      <iframe
-                        className="w-60 h-50 shadow-2xl relative z-10 border-1 border-gray-300  rounded-lg"
-                        src={resume.introVideo}
-                        allowFullScreen
-                      />
-                    </div>
-                  )}
-                </div>
-                <div className="mb-2 text-center md:text-left">
-                  <span className=" flex text-1xl sm:text-2xl font-bold pb-2  ">
-                    {resume.tagLine}
-                  </span>
-                  <span
-                    className="text-gray-800 mb-4"
-                    dangerouslySetInnerHTML={{
-                      __html: resume.introduction || ''
-                    }}
-                    suppressHydrationWarning={true}
-                  />
-                </div>
-                <div className="flex flex-row gap-6 justify-center  mt-6">
-                  {resume?.resumeUploadUrl && (
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <a
-                          href={resume.resumeUploadUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <FaDownload className="w-5 h-5  text-gray-600 hover:text-gray-800 transition-all duration-300 transform hover:-translate-y-1" />
-                        </a>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>Download my CV</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  )}
-                  {socialMedia?.linkedin && (
-                    <a
-                      href={socialMedia.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <FaLinkedin className="w-5 h-5 text-gray-600  hover:text-gray-800 transition-all duration-300 transform hover:-translate-y-1" />
-                    </a>
-                  )}
-                  {socialMedia?.facebook && (
-                    <a
-                      href={socialMedia.facebook}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <FaFacebook className="w-5 h-5 text-gray-600  hover:text-gray-800 transition-all duration-300 transform hover:-translate-y-1" />
-                    </a>
-                  )}
-                  {socialMedia?.github && (
-                    <a
-                      href={socialMedia.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <FaGithub className="w-5 h-5  text-gray-600  hover:text-gray-800 transition-all duration-300 transform hover:-translate-y-1" />
-                    </a>
-                  )}
-                  {socialMedia?.x && (
-                    <a
-                      href={socialMedia.x}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <FaX className="w-5 h-5  text-gray-600  hover:text-gray-800 transition-all duration-300 transform hover:-translate-y-1" />
-                    </a>
-                  )}
-                  {socialMedia?.youtube && (
-                    <a
-                      href={socialMedia.youtube}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <FaYoutube className="w-5 h-5  text-gray-600  hover:text-gray-800 transition-all duration-300 transform hover:-translate-y-1" />
-                    </a>
-                  )}
-                  {socialMedia?.instagram && (
-                    <a
-                      href={socialMedia.instagram}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <FaInstagram className="w-5 h-5  text-gray-600  hover:text-gray-800 transition-all duration-300 transform hover:-translate-y-1" />
-                    </a>
-                  )}
-                </div>
+        <section className="bg-blue-800 relative pb-12 pt-16 lg:pb-20 lg:pt-20 undefined">
+          <div className="absolute bottom-0 left-0 right-0 top-0 brightness-[90%]">
+            <Image
+              src={bg}
+              className="object-cover"
+              sizes="100vw"
+              quality={100}
+              placeholder="blur"
+              fill
+              style={{
+                position: 'absolute',
+                height: '100%',
+                width: '100%',
+                left: 0,
+                top: 0,
+                right: 0,
+                bottom: 0,
+                color: 'transparent'
+              }}
+              alt="Ocean waves with rocks"
+            />
+          </div>
+          <div className="container relative z-20 mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex-col  gap-5  text-left py-6 px-4 rounded-xl  items-center justify-center bg-blue-200/40  backdrop-blur-md text-blue-900">
+              <div className="flex flex-col md:flex-row gap-15 items-center justify-center">
+                {resume.personalImageUrl && (
+                  <div className="flex my-2 transition-all duration-300 transform hover:-translate-y-2 overflow-hidden">
+                    <Image
+                      src={resume.personalImageUrl}
+                      alt={resume.personalName || 'Profile Image'}
+                      width={150}
+                      height={150}
+                      className="w-50 h-50 rounded-full object-cover border-1 border-gray-300 relative "
+                    />
+                  </div>
+                )}
+                {resume.introVideo && (
+                  <div className="flex  my-2">
+                    <iframe
+                      className="w-60 h-50 shadow-2xl relative z-10 border-1 border-gray-300  rounded-lg"
+                      src={resume.introVideo}
+                      allowFullScreen
+                    />
+                  </div>
+                )}
+              </div>
+              <div className="mb-2 text-center md:text-left">
+                <span className=" flex text-1xl sm:text-2xl font-bold pb-2  ">
+                  {resume.tagLine}
+                </span>
+                <span
+                  className="text-gray-800 mb-4 text-xl"
+                  dangerouslySetInnerHTML={{
+                    __html: resume.introduction || ''
+                  }}
+                  suppressHydrationWarning={true}
+                />
+              </div>
+              <div className="flex flex-row gap-6 justify-center items-center  mt-6">
+                <span className="hidden sm:flex text-xl">
+                  Find me:
+                </span>
+                {resume?.resumeUploadUrl && (
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <a
+                        href={resume.resumeUploadUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <FaDownload className="w-5 h-5  text-gray-600 hover:text-gray-800 transition-all duration-300 transform hover:-translate-y-1" />
+                      </a>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Download my CV</p>
+                    </TooltipContent>
+                  </Tooltip>
+                )}
+                {socialMedia?.linkedin && (
+                  <a
+                    href={socialMedia.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <FaLinkedin className="w-5 h-5 text-gray-600  hover:text-gray-800 transition-all duration-300 transform hover:-translate-y-1" />
+                  </a>
+                )}
+                {socialMedia?.facebook && (
+                  <a
+                    href={socialMedia.facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <FaFacebook className="w-5 h-5 text-gray-600  hover:text-gray-800 transition-all duration-300 transform hover:-translate-y-1" />
+                  </a>
+                )}
+                {socialMedia?.github && (
+                  <a
+                    href={socialMedia.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <FaGithub className="w-5 h-5  text-gray-600  hover:text-gray-800 transition-all duration-300 transform hover:-translate-y-1" />
+                  </a>
+                )}
+                {socialMedia?.x && (
+                  <a
+                    href={socialMedia.x}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <FaX className="w-5 h-5  text-gray-600  hover:text-gray-800 transition-all duration-300 transform hover:-translate-y-1" />
+                  </a>
+                )}
+                {socialMedia?.youtube && (
+                  <a
+                    href={socialMedia.youtube}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <FaYoutube className="w-5 h-5  text-gray-600  hover:text-gray-800 transition-all duration-300 transform hover:-translate-y-1" />
+                  </a>
+                )}
+                {socialMedia?.instagram && (
+                  <a
+                    href={socialMedia.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <FaInstagram className="w-5 h-5  text-gray-600  hover:text-gray-800 transition-all duration-300 transform hover:-translate-y-1" />
+                  </a>
+                )}
               </div>
             </div>
           </div>
@@ -213,7 +224,7 @@ const Ocean = ({
         <section>
           {skills && skills.length > 0 ? (
             <section className="bg-gray-100 py-6 mb-6">
-              <SectionHeader label="Skills" />
+              <SectionHeader label="My Skills" />
               <div className="flex justify-start flex-wrap flex-row gap-8 p-6 mx-4">
                 {skills &&
                   skills.map((s, index) => (
@@ -240,7 +251,7 @@ const Ocean = ({
         {/* Reviews Section */}
         {reviews && reviews.length > 0 ? (
           <section>
-            <SectionHeader label="Reviews & References" />
+            <SectionHeader label="What others are saying about me" />
             <div className="flex flex-wrap gap-4 p-6 justify-center text-lg">
               {reviews.map((item, index) => {
                 return (
@@ -288,7 +299,7 @@ const Ocean = ({
         {/* Certifications Section */}
         {certifications && certifications.length > 0 ? (
           <section>
-            <SectionHeader label="Certifications" />
+            <SectionHeader label="My Certifications" />
             <div className="flex flex-wrap gap-4 p-6 justify-center text-lg">
               {certifications.map((item, index) => {
                 return (
@@ -316,7 +327,7 @@ const Ocean = ({
         {/* Awards Section */}
         {awards && awards.length > 0 ? (
           <section>
-            <SectionHeader label="Awards" />
+            <SectionHeader label="Awards I have earned" />
             <div className="flex flex-wrap gap-4 p-6 justify-center text-lg">
               {awards.map((item, index) => {
                 return (
@@ -344,7 +355,7 @@ const Ocean = ({
         {/* Experience Section */}
         {experience && experience.length > 0 ? (
           <section>
-            <SectionHeader label="Experience/Employment History" />
+            <SectionHeader label="My Experience" />
             <div className="flex flex-wrap gap-4 p-6 justify-center text-lg">
               {experience.map((item, index) => {
                 return (
@@ -425,7 +436,7 @@ const Ocean = ({
         {/* Education Section */}
         {education && education.length > 0 ? (
           <section>
-            <SectionHeader label="Education" />
+            <SectionHeader label="My Education" />
             <div className="flex flex-wrap gap-4 p-6 justify-center text-lg">
               {education.map((item, index) => {
                 return (

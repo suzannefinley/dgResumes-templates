@@ -20,7 +20,7 @@ export default function Portfolio({
   return (
     <>
       <section>
-        <SectionHeader label="Portfolio" />
+        <SectionHeader label="My Portfolio & Projects" />
 
         <Carousel
           className=" bg-gray-100 my-5 py-5 mr-5 rounded-lg"
@@ -36,7 +36,7 @@ export default function Portfolio({
         >
           <CarouselContent className="ml-5">
             {portfolio.map((item, index) => (
-              <PortfolioItem key={index} item={item} />
+              <PortfolioItem key={index} index={index} item={item} />
             ))}
           </CarouselContent>
           <CarouselPrevious />
