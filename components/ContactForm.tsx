@@ -78,23 +78,23 @@ export function ContactForm({
             onSubmit={form.handleSubmit(onSubmit)}
             className="flex flex-col  !max-w-[calc(100vw-125px)] sm:w-3/4"
           >
-            <div className="flex flex-col lg:flex-row w-full gap-6 mb-6  justify-between">
+            <div className="flex flex-col lg:flex-row w-full gap-6 mb-1  justify-between">
               <FormField
                 control={form.control}
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="block text-lg sm:text-xl font-medium">
+                    <FormLabel className="block text-sm font-medium">
                       Name
                     </FormLabel>
                     <FormControl>
                       <Input
-                        className="flex border-primary bg-white w-full xl:min-w-[300px]  min-h-[40px]"
+                        className="flex border-primary bg-white w-full xl:min-w-[300px]"
                         placeholder="Your Name"
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage className="text-xl font-semibold text-red-600" />
+                    <FormMessage className="text-sm font-semibold text-red-600" />
                   </FormItem>
                 )}
               />
@@ -103,17 +103,17 @@ export function ContactForm({
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="block text-xl font-medium">
+                    <FormLabel className="block text-sm font-medium">
                       Email
                     </FormLabel>
                     <FormControl>
                       <Input
-                        className="flex border-primary bg-white w-full xl:min-w-[300px]  min-h-[40px]"
+                        className="flex border-primary bg-white w-full xl:min-w-[300px]"
                         placeholder="Email Address"
                         {...field}
                       />
                     </FormControl>
-                    <FormMessage className="text-xl font-semibold text-red-600" />
+                    <FormMessage className="text-sm font-semibold text-red-600" />
                   </FormItem>
                 )}
               />
@@ -124,14 +124,14 @@ export function ContactForm({
                 name="message"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="block text-xl font-medium">
+                    <FormLabel className="block text-sm font-medium">
                       Message
                     </FormLabel>
                     <FormControl>
                       <Textarea
-                        className="w-full border-primary bg-white min-h-40 font-medium"
+                        className="w-full border-primary bg-white min-h-30 font-medium"
                         placeholder="Type your message here."
-                        rows={6}
+                        rows={4}
                         id="message"
                         {...field}
                       />
