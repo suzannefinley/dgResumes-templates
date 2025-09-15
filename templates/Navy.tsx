@@ -1,19 +1,14 @@
 'use client';
+import './navy/assets/navy.css';
+import { Roboto } from 'next/font/google';
 import { Resume, PortfolioProject } from '@/types/resume';
 
 import Image from 'next/image';
 import bg from '@/public/images/templates/navy/navyHero.jpg';
-//import './ocean/ocean.css';
-//import { setDataArrays } from '@/lib/helpers/setDataArrays';
+
 import { useState } from 'react';
 import { setDataArrays } from '@/lib/helpers/setDataArrays';
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  DialogDescription
-} from '@/components/ui/dialog';
-import { ContactForm } from '@/components/ContactForm';
+
 import { CircleCheckBig } from 'lucide-react';
 import {
   FaLinkedin,
@@ -22,19 +17,23 @@ import {
   FaYoutube,
   FaGithub,
   FaX,
-  FaDownload,
-  FaEnvelope,
-  FaPhone
+  FaDownload
 } from 'react-icons/fa6';
 
 import Reviews from './navy/components/Reviews';
 import { Badge } from '@/components/ui/badge';
-import { ScrollArea } from '@/components/ui/scroll-area';
+
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger
 } from '@/components/ui/tooltip';
+import ContactFormDialog from '@/components/ContactFormDialog';
+
+const roboto = Roboto({
+  subsets: ['latin'],
+  weight: ['400', '700']
+});
 
 const Navy = ({
   resume,
@@ -96,8 +95,10 @@ const Navy = ({
   const sectionClass2 = 'bg-white text-primary-900 py-5';
   const headingClass = 'mb-2 font-semibold text-xl';
 
+  //document.documentElement.classList.add('navy-theme');
+
   return (
-    <>
+    <div className={`${roboto.className} navy-theme`}>
       <div className="bg-primary text-gray-50 transition-colors duration-300">
         {/* <!-- Sticky Navigation --> */}
         <nav className="fixed top-0 w-full bg-primary-50/80 backdrop-blur-md z-50 border-b border-gray-200">
@@ -285,9 +286,15 @@ const Navy = ({
             }
           >
             <div className="max-w-7xl justify-center mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="text-center mb-16">
+              <div
+                suppressHydrationWarning={true}
+                className="text-center mb-16"
+              >
                 <h3 className={headingClass}>About Me</h3>
-                <div className="text-lg gap-2 leading-relaxed space-y-6 border-1 border-primary-200/40 p-6 rounded-xl bg-primary-400/20  backdrop-blur-md text-primary-100">
+                <div
+                  suppressHydrationWarning={true}
+                  className="text-lg gap-2 leading-relaxed space-y-6 border-1 border-primary-200/40 p-6 rounded-xl bg-primary-400/20  backdrop-blur-md text-primary-100"
+                >
                   {resume.introduction ? (
                     <p>
                       <span
@@ -304,6 +311,7 @@ const Navy = ({
                       suppressHydrationWarning={true}
                     >
                       <iframe
+                        suppressHydrationWarning={true}
                         className="w-75 h-50 shadow-2xl relative z-10 border-4 border-white dark:border-gray-800"
                         src={resume.introVideo}
                         allowFullScreen
@@ -762,7 +770,7 @@ const Navy = ({
           </section>
         )}
       </div>
-      <div className="">
+      {/* <div className="">
         <Dialog
           open={showContactForm}
           onOpenChange={setShowContactForm}
@@ -812,8 +820,14 @@ const Navy = ({
             </DialogContent>
           </div>
         </Dialog>
-      </div>
-    </>
+      </div> */}
+      <ContactFormDialog
+        email={resume.email ?? undefined}
+        phone={resume.phone ?? undefined}
+        open={showContactForm}
+        onClose={() => setShowContactForm(false)}
+      />
+    </div>
   );
 };
 export default Navy;

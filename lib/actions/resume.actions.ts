@@ -3,15 +3,51 @@
 // import { isRedirectError } from 'next/dist/client/components/redirect-error';
 
 import db from '@/db/drizzle';
-import { eq } from 'drizzle-orm';
+import { and, eq, sql } from 'drizzle-orm';
 import {
   uploadfile,
   subscriberresume,
   template,
-  project
+  project,
+  user
 } from '@/drizzle/schema';
 import { alias } from 'drizzle-orm/pg-core';
 import { formatError } from '@/lib/utils';
+
+export async function getResumesByPersonalName(
+  personalName?: string
+) {
+  if (!personalName)
+    throw new Error(
+      'getResumeByPersonalName Missing the Personal Name'
+    );
+  //only return resumes where the resumeStatus is 'ACTIVE'
+  // and personalName matches (case insensitive)
+  // and the subscriber status is 'ACTIVE'
+
+  const resumeList = await db
+    .select({
+      title: subscriberresume.title,
+      url: subscriberresume.url
+    })
+    .from(subscriberresume)
+    .innerJoin(user, eq(subscriberresume.userId, user.id))
+    .where(
+      and(
+        eq(
+          lower(subscriberresume.personalName),
+          personalName.toLowerCase()
+        ),
+        eq(subscriberresume.resumeStatus, 'ACTIVE'),
+        eq(user.status, 'ACTIVE')
+      )
+    );
+
+  return resumeList;
+}
+
+//only return resumes where the resumeStatus is 'ACTIVE'
+// and the subscriber status is 'ACTIVE'
 
 export async function getResumeByUrl(rUrl?: string) {
   if (!rUrl) throw new Error('getResumeByUrl Missing the Url');
@@ -20,6 +56,7 @@ export async function getResumeByUrl(rUrl?: string) {
   const ufp = alias(uploadfile, 'ufp');
   const ufr = alias(uploadfile, 'ufr');
   const t = alias(template, 't');
+  const u = alias(user, 'u');
 
   try {
     const resume = await db
@@ -45,10 +82,17 @@ export async function getResumeByUrl(rUrl?: string) {
         resumeUploadUrl: ufr.uploadFileUrl
       })
       .from(sr)
+      .innerJoin(u, eq(sr.userId, u.id))
       .leftJoin(t, eq(sr.templateId, t.templateId))
       .leftJoin(ufp, eq(sr.resumePersonalImageId, ufp.uploadFileId))
       .leftJoin(ufr, eq(sr.resumeUploadId, ufr.uploadFileId))
-      .where(eq(sr.url, rUrl));
+      .where(
+        and(
+          eq(sr.url, rUrl),
+          eq(sr.resumeStatus, 'ACTIVE'),
+          eq(u.status, 'ACTIVE')
+        )
+      );
 
     if (!resume) throw new Error('getResumeByUrl Resume not found');
     //console.log('resume: ' + resume[0]);
@@ -90,4 +134,9 @@ export async function getProjectsByResumeId(resumeId: number) {
     console.error('Error in getProjectsByResumeId:', error);
     throw new Error(formatError(error));
   }
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function lower(columnRef: any) {
+  return sql`lower(${columnRef})`;
 }

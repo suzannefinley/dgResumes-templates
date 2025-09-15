@@ -30,3 +30,5 @@ export function formatError(error: any) {
       : JSON.stringify(error.message);
   }
 }
+
+
