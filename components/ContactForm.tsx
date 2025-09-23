@@ -20,29 +20,21 @@ import {
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { toast } from 'sonner';
+import { contactFormSchema } from '@/lib/validators/contact';
 
-// Define the Zod schema for form validation
-const formSchema = z.object({
-  name: z.string().min(5, {
-    message: 'Name must be at least 5 characters.'
-  }),
-  email: z.email({
-    message: 'Invalid email address.'
-  }),
-  message: z.string().min(10, {
-    message: 'Message should be at least 10 characters.'
-  })
-});
+import { sendContactEmail } from '@/email';
 
 export function ContactForm({
+  subscriberEmail,
   contactFormSubmitted
 }: {
+  subscriberEmail: string;
   contactFormSubmitted: () => void;
 }) {
-  const form = useForm<z.infer<typeof formSchema>>({
+  const form = useForm<z.infer<typeof contactFormSchema>>({
     mode: 'onBlur',
     reValidateMode: 'onBlur',
-    resolver: zodResolver(formSchema),
+    resolver: zodResolver(contactFormSchema),
     defaultValues: {
       name: '',
       email: '',
@@ -59,9 +51,10 @@ export function ContactForm({
   //const formRef = useRef<HTMLFormElement | null>(null);
 
   const onSubmit: SubmitHandler<
-    z.infer<typeof formSchema>
+    z.infer<typeof contactFormSchema>
   > = values => {
     //alert('form submitted');
+    sendContactEmail(values, subscriberEmail);
     console.log('data:', values);
     toast(
       'Your message was sent successfully! I will contact your shortly'

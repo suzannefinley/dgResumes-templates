@@ -2,12 +2,8 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import { APP_NAME } from '@/lib/constants';
-import 'dotenv/config';
 
-import { Button } from './ui/button';
-import { UserIcon, PersonStanding } from 'lucide-react';
+import 'dotenv/config';
 
 const NameSearch = ({ noResumeUrl }: { noResumeUrl: string }) => {
   const router = useRouter();

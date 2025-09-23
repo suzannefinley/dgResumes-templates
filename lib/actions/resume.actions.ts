@@ -79,7 +79,8 @@ export async function getResumeByUrl(rUrl?: string) {
         resumeStatus: sr.resumeStatus,
         templateName: t.name,
         personalImageUrl: ufp.uploadFileUrl,
-        resumeUploadUrl: ufr.uploadFileUrl
+        resumeUploadUrl: ufr.uploadFileUrl,
+        subscriberEmail: u.email
       })
       .from(sr)
       .innerJoin(u, eq(sr.userId, u.id))

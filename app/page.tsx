@@ -30,6 +30,9 @@ export default async function Home() {
 
   const resume = await getResumeByUrl(rUrl);
   //console.log('resume:', resume);
+  // only resumes of ACTIVE subscribers are returned
+  // if no resume is found, show the NameSearch component
+  // to allow searching by name
 
   if (!resume) {
     return (

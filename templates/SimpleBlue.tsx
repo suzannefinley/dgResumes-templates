@@ -10,7 +10,7 @@ import {
   TooltipContent,
   TooltipTrigger
 } from '@/components/ui/tooltip';
-import { ScrollArea } from '@/components/ui/scroll-area';
+
 //import Link from 'next/link';
 import {
   FaLinkedin,
@@ -19,19 +19,12 @@ import {
   FaYoutube,
   FaGithub,
   FaX,
-  FaDownload,
-  FaEnvelope,
-  FaPhone
+  FaDownload
 } from 'react-icons/fa6';
 import ModeToggle from '@/components/ModeToggle';
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  DialogDescription
-} from '@/components/ui/dialog';
-import { ContactForm } from '@/components/ContactForm';
+
 import { setDataArrays } from '@/lib/helpers/setDataArrays';
+import ContactFormDialog from '@/components/ContactFormDialog';
 
 const SimpleBlue = ({
   resume,
@@ -856,52 +849,13 @@ const SimpleBlue = ({
           </section>
         )}
       </div>
-      <div className="">
-        <Dialog
-          open={showContactForm}
-          onOpenChange={setShowContactForm}
-        >
-          <div className="flex justify-center">
-            <DialogContent className="!max-w-[calc(100vw-100px)] md:!max-w-[calc(100vw-200px)] lg:!max-w-[calc(100vw-500px)]  px-4 sm:px-6">
-              <DialogTitle className="text-center text-gray-600 dark:text-gray-300 text-xl md:text-4xl font-bold mb-2">
-                Get In Touch
-              </DialogTitle>
-              <DialogDescription className="text-center  text-gray-600 dark:text-gray-300 text-md md:text-lg mb-4">
-                Let&#39;s work together! I would love to hear from
-                you!
-                {resume.email || resume.phone ? (
-                  <span className="flex flex-col sm:flex-row gap-6 justify-center mt-2">
-                    {resume.email && (
-                      <a href={`mailto:${resume.email}`}>
-                        <span className="flex flex-row gap-2 items-center">
-                          <FaEnvelope /> {resume.email}
-                        </span>
-                      </a>
-                    )}
-                    {resume.phone && (
-                      <a href={`tel:${resume.phone}`}>
-                        <span className="flex flex-row gap-2 items-center">
-                          <FaPhone /> {resume.phone}
-                        </span>
-                      </a>
-                    )}
-                  </span>
-                ) : null}
-              </DialogDescription>
-
-              <div className="px-4 sm:px-6 lg:px-8  flex justify-center mt-0 mb-6">
-                <ScrollArea className="h-full w-full">
-                  <ContactForm
-                    contactFormSubmitted={() =>
-                      setShowContactForm(false)
-                    }
-                  />
-                </ScrollArea>
-              </div>
-            </DialogContent>
-          </div>
-        </Dialog>
-      </div>
+      <ContactFormDialog
+        email={resume.email ?? undefined}
+        phone={resume.phone ?? undefined}
+        open={showContactForm}
+        onClose={() => setShowContactForm(false)}
+        subscriberEmail={resume.subscriberEmail}
+      />
     </>
   );
 };

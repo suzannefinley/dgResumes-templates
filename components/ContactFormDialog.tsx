@@ -8,19 +8,19 @@ import {
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { ContactForm } from './ContactForm';
 import { FaEnvelope, FaPhone } from 'react-icons/fa';
-import { useState } from 'react';
-import { on } from 'events';
 
 const ContactFormDialog = ({
   email,
   phone,
   open,
-  onClose
+  onClose,
+  subscriberEmail
 }: {
   email?: string;
   phone?: string;
   open: boolean;
   onClose: () => void;
+  subscriberEmail: string;
 }) => {
   return (
     <>
@@ -60,7 +60,10 @@ const ContactFormDialog = ({
 
             <div className="px-4 sm:px-6 lg:px-8  flex justify-center mt-0 mb-6">
               <ScrollArea className=" w-full">
-                <ContactForm contactFormSubmitted={() => onClose()} />
+                <ContactForm
+                  contactFormSubmitted={() => onClose()}
+                  subscriberEmail={subscriberEmail}
+                />
               </ScrollArea>
             </div>
           </DialogContent>

@@ -19,6 +19,7 @@ export type Resume = {
   experience?: ResumeExperienceItem[] | unknown;
   education?: ResumeEducationItem[] | unknown;
   reviews?: ResumeReviewItem[] | unknown;
+  subscriberEmail: string;
 };
 
 export type ResumeSkillItem = {
