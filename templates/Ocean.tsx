@@ -77,7 +77,7 @@ const Ocean = ({
         </nav>
 
         {/* Hero Section */}
-        <section className="bg-blue-800 relative pb-12 pt-16 lg:pb-20 lg:pt-20 undefined">
+        <section className="bg-blue-800 relative pb-12 pt-16 lg:pb-20 lg:pt-20 mb-6 undefined">
           <div className="absolute bottom-0 left-0 right-0 top-0 brightness-[90%]">
             <Image
               src={bg}
@@ -135,81 +135,83 @@ const Ocean = ({
                   suppressHydrationWarning={true}
                 />
               </div>
-              <div className="flex flex-row gap-6 justify-center items-center  mt-6">
-                <span className="hidden sm:flex text-xl">
-                  Find me:
-                </span>
-                {resume?.resumeUploadUrl && (
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <a
-                        href={resume.resumeUploadUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <FaDownload className="w-5 h-5  text-gray-600 hover:text-gray-800 transition-all duration-300 transform hover:-translate-y-1" />
-                      </a>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Download my CV</p>
-                    </TooltipContent>
-                  </Tooltip>
-                )}
-                {socialMedia?.linkedin && (
-                  <a
-                    href={socialMedia.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <FaLinkedin className="w-5 h-5 text-gray-600  hover:text-gray-800 transition-all duration-300 transform hover:-translate-y-1" />
-                  </a>
-                )}
-                {socialMedia?.facebook && (
-                  <a
-                    href={socialMedia.facebook}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <FaFacebook className="w-5 h-5 text-gray-600  hover:text-gray-800 transition-all duration-300 transform hover:-translate-y-1" />
-                  </a>
-                )}
-                {socialMedia?.github && (
-                  <a
-                    href={socialMedia.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <FaGithub className="w-5 h-5  text-gray-600  hover:text-gray-800 transition-all duration-300 transform hover:-translate-y-1" />
-                  </a>
-                )}
-                {socialMedia?.x && (
-                  <a
-                    href={socialMedia.x}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <FaX className="w-5 h-5  text-gray-600  hover:text-gray-800 transition-all duration-300 transform hover:-translate-y-1" />
-                  </a>
-                )}
-                {socialMedia?.youtube && (
-                  <a
-                    href={socialMedia.youtube}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <FaYoutube className="w-5 h-5  text-gray-600  hover:text-gray-800 transition-all duration-300 transform hover:-translate-y-1" />
-                  </a>
-                )}
-                {socialMedia?.instagram && (
-                  <a
-                    href={socialMedia.instagram}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <FaInstagram className="w-5 h-5  text-gray-600  hover:text-gray-800 transition-all duration-300 transform hover:-translate-y-1" />
-                  </a>
-                )}
-              </div>
+              {resume?.resumeUploadUrl || socialMedia ? (
+                <div className="flex flex-row gap-6 justify-center items-center  mt-6">
+                  <span className="hidden sm:flex text-xl">
+                    Find me:
+                  </span>
+                  {resume?.resumeUploadUrl && (
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <a
+                          href={resume.resumeUploadUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <FaDownload className="w-5 h-5  text-gray-600 hover:text-gray-800 transition-all duration-300 transform hover:-translate-y-1" />
+                        </a>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>Download my CV</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  )}
+                  {socialMedia?.linkedin && (
+                    <a
+                      href={socialMedia.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FaLinkedin className="w-5 h-5 text-gray-600  hover:text-gray-800 transition-all duration-300 transform hover:-translate-y-1" />
+                    </a>
+                  )}
+                  {socialMedia?.facebook && (
+                    <a
+                      href={socialMedia.facebook}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FaFacebook className="w-5 h-5 text-gray-600  hover:text-gray-800 transition-all duration-300 transform hover:-translate-y-1" />
+                    </a>
+                  )}
+                  {socialMedia?.github && (
+                    <a
+                      href={socialMedia.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FaGithub className="w-5 h-5  text-gray-600  hover:text-gray-800 transition-all duration-300 transform hover:-translate-y-1" />
+                    </a>
+                  )}
+                  {socialMedia?.x && (
+                    <a
+                      href={socialMedia.x}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FaX className="w-5 h-5  text-gray-600  hover:text-gray-800 transition-all duration-300 transform hover:-translate-y-1" />
+                    </a>
+                  )}
+                  {socialMedia?.youtube && (
+                    <a
+                      href={socialMedia.youtube}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FaYoutube className="w-5 h-5  text-gray-600  hover:text-gray-800 transition-all duration-300 transform hover:-translate-y-1" />
+                    </a>
+                  )}
+                  {socialMedia?.instagram && (
+                    <a
+                      href={socialMedia.instagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FaInstagram className="w-5 h-5  text-gray-600  hover:text-gray-800 transition-all duration-300 transform hover:-translate-y-1" />
+                    </a>
+                  )}
+                </div>
+              ) : null}
             </div>
           </div>
         </section>

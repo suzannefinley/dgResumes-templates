@@ -160,12 +160,15 @@ const Navy = ({
                     {resume.tagLine}
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start px-2">
-                    <a
-                      href="#projects"
-                      className=" bg-gradient-to-br from-[#3bc14a] to-[#1ba82b] hover:to-[#11851e]  text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
-                    >
-                      View My Work
-                    </a>
+                    {projects && projects.length > 0 && (
+                      <a
+                        href="#projects"
+                        className=" bg-gradient-to-br from-[#3bc14a] to-[#1ba82b] hover:to-[#11851e]  text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+                      >
+                        View My Work
+                      </a>
+                    )}
+
                     <a
                       href="#"
                       className="border-2 border-secondary-600 text-primary-100 hover:bg-secondary-500 hover:text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"
@@ -174,80 +177,88 @@ const Navy = ({
                       Get In Touch
                     </a>
                   </div>
-                  <div className="flex flex-row gap-6 justify-center lg:justify-start mt-6">
-                    {resume?.resumeUploadUrl && (
-                      <Tooltip>
-                        <TooltipTrigger asChild>
-                          <a
-                            href={resume.resumeUploadUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <FaDownload
-                              className={socialMediaClasses}
-                            />
-                          </a>
-                        </TooltipTrigger>
-                        <TooltipContent>
-                          <p>Download my CV</p>
-                        </TooltipContent>
-                      </Tooltip>
-                    )}
-                    {socialMedia?.linkedin && (
-                      <a
-                        href={socialMedia.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <FaLinkedin className={socialMediaClasses} />
-                      </a>
-                    )}
-                    {socialMedia?.facebook && (
-                      <a
-                        href={socialMedia.facebook}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <FaFacebook className={socialMediaClasses} />
-                      </a>
-                    )}
-                    {socialMedia?.github && (
-                      <a
-                        href={socialMedia.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <FaGithub className={socialMediaClasses} />
-                      </a>
-                    )}
-                    {socialMedia?.x && (
-                      <a
-                        href={socialMedia.x}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <FaX className={socialMediaClasses} />
-                      </a>
-                    )}
-                    {socialMedia?.youtube && (
-                      <a
-                        href={socialMedia.youtube}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <FaYoutube className={socialMediaClasses} />
-                      </a>
-                    )}
-                    {socialMedia?.instagram && (
-                      <a
-                        href={socialMedia.instagram}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <FaInstagram className={socialMediaClasses} />
-                      </a>
-                    )}
-                  </div>
+                  {resume?.resumeUploadUrl || socialMedia ? (
+                    <div className="flex flex-row gap-6 justify-center lg:justify-start mt-6">
+                      {resume?.resumeUploadUrl && (
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <a
+                              href={resume.resumeUploadUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <FaDownload
+                                className={socialMediaClasses}
+                              />
+                            </a>
+                          </TooltipTrigger>
+                          <TooltipContent>
+                            <p>Download my CV</p>
+                          </TooltipContent>
+                        </Tooltip>
+                      )}
+                      {socialMedia?.linkedin && (
+                        <a
+                          href={socialMedia.linkedin}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <FaLinkedin
+                            className={socialMediaClasses}
+                          />
+                        </a>
+                      )}
+                      {socialMedia?.facebook && (
+                        <a
+                          href={socialMedia.facebook}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <FaFacebook
+                            className={socialMediaClasses}
+                          />
+                        </a>
+                      )}
+                      {socialMedia?.github && (
+                        <a
+                          href={socialMedia.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <FaGithub className={socialMediaClasses} />
+                        </a>
+                      )}
+                      {socialMedia?.x && (
+                        <a
+                          href={socialMedia.x}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <FaX className={socialMediaClasses} />
+                        </a>
+                      )}
+                      {socialMedia?.youtube && (
+                        <a
+                          href={socialMedia.youtube}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <FaYoutube className={socialMediaClasses} />
+                        </a>
+                      )}
+                      {socialMedia?.instagram && (
+                        <a
+                          href={socialMedia.instagram}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <FaInstagram
+                            className={socialMediaClasses}
+                          />
+                        </a>
+                      )}
+                    </div>
+                  ) : null}
                 </div>
                 <div
                   className="flex justify-center"
@@ -296,14 +307,14 @@ const Navy = ({
                   className="text-lg gap-2 leading-relaxed space-y-6 border-1 border-primary-200/40 p-6 rounded-xl bg-primary-400/20  backdrop-blur-md text-primary-100"
                 >
                   {resume.introduction ? (
-                    <p>
+                    <div>
                       <span
                         suppressHydrationWarning={true}
                         dangerouslySetInnerHTML={{
                           __html: resume.introduction || ''
                         }}
                       />
-                    </p>
+                    </div>
                   ) : null}
                   {resume.introVideo ? (
                     <div
@@ -392,7 +403,7 @@ const Navy = ({
                       {project.description && (
                         <div className="px-6 mb-1">
                           <span
-                            className="text-gray-600 dark:text-gray-300 mb-4"
+                            className="text-gray-600 mb-4"
                             dangerouslySetInnerHTML={{
                               __html: project.description || ''
                             }}
@@ -491,7 +502,7 @@ const Navy = ({
                       key={index}
                       className="max-w-7xl px-4 sm:px-6 mb-6"
                     >
-                      <div className="p-2 sm:p-4 lg:p-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden">
+                      <div className="p-2 sm:p-4 lg:p-6 bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden">
                         <div className="text-xl md:text-2xl font-bold mb-1">
                           {cert.certificationName}
 
@@ -531,9 +542,9 @@ const Navy = ({
                   awards.map((award, index) => (
                     <div
                       key={index}
-                      className="max-w-7xl px-4 sm:px-6 mb-6"
+                      className="max-w-7xl px-4 sm:px-6 mb-6 "
                     >
-                      <div className="p-2 sm:p-4 lg:p-6 bg-white dark:bg-gray-900 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden">
+                      <div className="p-2 sm:p-4 lg:p-6 bg-white text-primary-900 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden">
                         <div className="text-xl md:text-2xl font-bold mb-1 flex flex-row items-center gap-4">
                           {award.awardName}
 
@@ -648,7 +659,7 @@ const Navy = ({
                         )}
 
                         {job.responsibilities && (
-                          <p className="text-gray-600 dark:text-gray-300 mt-2 mb-4">
+                          <div className="text-gray-600 dark:text-gray-300 mt-2 mb-4">
                             <span className="font-bold text-lg">
                               Responsibilities:
                             </span>
@@ -658,10 +669,10 @@ const Navy = ({
                                 __html: job.responsibilities || ''
                               }}
                             />
-                          </p>
+                          </div>
                         )}
                         {job.achievements && (
-                          <p className="text-gray-600 dark:text-gray-300 mt-2 mb-4">
+                          <div className="text-gray-600 dark:text-gray-300 mt-2 mb-4">
                             <span className="font-bold text-lg">
                               Achievements:
                             </span>
@@ -671,7 +682,7 @@ const Navy = ({
                                 __html: job.achievements || ''
                               }}
                             />
-                          </p>
+                          </div>
                         )}
 
                         <div className="flex flex-row gap-3">
@@ -753,14 +764,14 @@ const Navy = ({
                         )}
 
                         {school.description && (
-                          <p className="text-gray-600 mt-2 mb-4">
+                          <div className="text-gray-600 mt-2 mb-4">
                             <span
                               suppressHydrationWarning
                               dangerouslySetInnerHTML={{
                                 __html: school.description || ''
                               }}
                             />
-                          </p>
+                          </div>
                         )}
                       </div>
                     </div>

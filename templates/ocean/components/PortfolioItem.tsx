@@ -25,7 +25,7 @@ export default function PortfolioItem({
         <div className="flex px-3 py-3">
           <div
             key={index}
-            className="bg-white dark:bg-gray-900 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden"
+            className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden"
           >
             <div className="h-48 flex justify-center bg-gradient-to-br from-blue-800 to-blue-200">
               {projectImageUrl ? (

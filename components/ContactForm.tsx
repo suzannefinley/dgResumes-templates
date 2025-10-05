@@ -63,7 +63,7 @@ export function ContactForm({
   };
 
   return (
-    <div className="flex  w-full p-0 sm:p-4 mx-0 sm:mx-4 justify-center  dark:border-gray-200 ">
+    <div className="flex w-full p-0 sm:p-4 mx-0 justify-center">
       <FormProvider {...formMethods}>
         <Form {...form}>
           <form
@@ -71,7 +71,7 @@ export function ContactForm({
             onSubmit={form.handleSubmit(onSubmit)}
             className="flex flex-col  !max-w-[calc(100vw-125px)] sm:w-3/4"
           >
-            <div className="flex flex-col lg:flex-row w-full gap-6 mb-1  justify-between">
+            <div className="flex flex-col lg:flex-row w-full gap-6 mb-1  justify-center">
               <FormField
                 control={form.control}
                 name="name"

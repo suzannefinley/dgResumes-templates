@@ -206,12 +206,14 @@ const SimpleBlue = ({
                   {resume.tagLine}
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start px-2">
-                  <a
-                    href="#projects"
-                    className="bg-primary-600 hover:bg-primary-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
-                  >
-                    View My Work
-                  </a>
+                  {projects && projects.length > 0 && (
+                    <a
+                      href="#projects"
+                      className="bg-primary-600 hover:bg-primary-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+                    >
+                      View My Work
+                    </a>
+                  )}
                   <a
                     href="#"
                     className="border-2 border-primary-600 text-primary-600 dark:text-primary-400 hover:bg-primary-600 hover:text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"
@@ -220,78 +222,80 @@ const SimpleBlue = ({
                     Get In Touch
                   </a>
                 </div>
-                <div className="flex flex-row gap-6 justify-center lg:justify-start mt-6">
-                  {resume?.resumeUploadUrl && (
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <a
-                          href={resume.resumeUploadUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          <FaDownload className="w-5 h-5  text-gray-600 dark:text-gray-300 hover:underline" />
-                        </a>
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <p>Download my CV</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  )}
-                  {socialMedia?.linkedin && (
-                    <a
-                      href={socialMedia.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <FaLinkedin className="w-5 h-5 text-gray-600 dark:text-gray-300 hover:underline" />
-                    </a>
-                  )}
-                  {socialMedia?.facebook && (
-                    <a
-                      href={socialMedia.facebook}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <FaFacebook className="w-5 h-5 text-gray-600 dark:text-gray-300 hover:underline" />
-                    </a>
-                  )}
-                  {socialMedia?.github && (
-                    <a
-                      href={socialMedia.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <FaGithub className="w-5 h-5  text-gray-600 dark:text-gray-300 hover:underline" />
-                    </a>
-                  )}
-                  {socialMedia?.x && (
-                    <a
-                      href={socialMedia.x}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <FaX className="w-5 h-5  text-gray-600 dark:text-gray-300 hover:underline" />
-                    </a>
-                  )}
-                  {socialMedia?.youtube && (
-                    <a
-                      href={socialMedia.youtube}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <FaYoutube className="w-5 h-5  text-gray-600 dark:text-gray-300 hover:underline" />
-                    </a>
-                  )}
-                  {socialMedia?.instagram && (
-                    <a
-                      href={socialMedia.instagram}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <FaInstagram className="w-5 h-5  text-gray-600 dark:text-gray-300 hover:underline" />
-                    </a>
-                  )}
-                </div>
+                {resume?.resumeUploadUrl || socialMedia ? (
+                  <div className="flex flex-row gap-6 justify-center lg:justify-start mt-6">
+                    {resume?.resumeUploadUrl && (
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <a
+                            href={resume.resumeUploadUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <FaDownload className="w-5 h-5  text-gray-600 dark:text-gray-300 hover:underline" />
+                          </a>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>Download my CV</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    )}
+                    {socialMedia?.linkedin && (
+                      <a
+                        href={socialMedia.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <FaLinkedin className="w-5 h-5 text-gray-600 dark:text-gray-300 hover:underline" />
+                      </a>
+                    )}
+                    {socialMedia?.facebook && (
+                      <a
+                        href={socialMedia.facebook}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <FaFacebook className="w-5 h-5 text-gray-600 dark:text-gray-300 hover:underline" />
+                      </a>
+                    )}
+                    {socialMedia?.github && (
+                      <a
+                        href={socialMedia.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <FaGithub className="w-5 h-5  text-gray-600 dark:text-gray-300 hover:underline" />
+                      </a>
+                    )}
+                    {socialMedia?.x && (
+                      <a
+                        href={socialMedia.x}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <FaX className="w-5 h-5  text-gray-600 dark:text-gray-300 hover:underline" />
+                      </a>
+                    )}
+                    {socialMedia?.youtube && (
+                      <a
+                        href={socialMedia.youtube}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <FaYoutube className="w-5 h-5  text-gray-600 dark:text-gray-300 hover:underline" />
+                      </a>
+                    )}
+                    {socialMedia?.instagram && (
+                      <a
+                        href={socialMedia.instagram}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <FaInstagram className="w-5 h-5  text-gray-600 dark:text-gray-300 hover:underline" />
+                      </a>
+                    )}
+                  </div>
+                ) : null}
               </div>
               <div
                 className="flex justify-center"
@@ -453,14 +457,14 @@ const SimpleBlue = ({
                 About Me
               </h2>
               <div className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed space-y-6">
-                <p>
+                <div>
                   <span
                     suppressHydrationWarning
                     dangerouslySetInnerHTML={{
                       __html: resume.introduction || ''
                     }}
                   />
-                </p>
+                </div>
               </div>
             </div>
           </div>
@@ -723,7 +727,7 @@ const SimpleBlue = ({
                         )}
 
                         {job.responsibilities && (
-                          <p className="text-gray-600 dark:text-gray-300 mt-2 mb-4">
+                          <div className="text-gray-600 dark:text-gray-300 mt-2 mb-4">
                             <span className="font-bold text-lg">
                               Responsibilities:
                             </span>
@@ -733,10 +737,10 @@ const SimpleBlue = ({
                                 __html: job.responsibilities || ''
                               }}
                             />
-                          </p>
+                          </div>
                         )}
                         {job.achievements && (
-                          <p className="text-gray-600 dark:text-gray-300 mt-2 mb-4">
+                          <div className="text-gray-600 dark:text-gray-300 mt-2 mb-4">
                             <span className="font-bold text-lg">
                               Achievements:
                             </span>
@@ -746,7 +750,7 @@ const SimpleBlue = ({
                                 __html: job.achievements || ''
                               }}
                             />
-                          </p>
+                          </div>
                         )}
 
                         <div className="flex flex-row gap-3">
@@ -832,14 +836,14 @@ const SimpleBlue = ({
                         )}
 
                         {school.description && (
-                          <p className="text-gray-600 dark:text-gray-300 mt-2 mb-4">
+                          <div className="text-gray-600 dark:text-gray-300 mt-2 mb-4">
                             <span
                               suppressHydrationWarning
                               dangerouslySetInnerHTML={{
                                 __html: school.description || ''
                               }}
                             />
-                          </p>
+                          </div>
                         )}
                       </div>
                     </div>

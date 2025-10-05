@@ -30,32 +30,30 @@ const ContactFormDialog = ({
             <DialogTitle className="text-center text-primary-800  dark:text-primary-300  text-xl sm:text-2xl font-bold mb-0 pb-0">
               Get In Touch
             </DialogTitle>
-            <DialogDescription className="text-center justify-center text-primary-950 text-sm md:text-md py-0 my-0 ">
-              <div className="flex flex-col gap-2 items-center justify-center mb-0 pb-0">
-                <span className="mb-1 text-primary-800 dark:text-primary-300 text-sm md:text-lg">
-                  Let&#39;s work together! I would love to hear from
-                  you!
-                </span>
+            <DialogDescription className="flex flex-col gap-2 items-center mb-0 pb-0 text-center justify-center text-primary-950 text-sm md:text-md py-0 my-0 ">
+              <span className="mb-1 text-primary-800 dark:text-primary-300 text-sm md:text-lg">
+                Let&#39;s work together! I would love to hear from
+                you!
+              </span>
 
-                {email || phone ? (
-                  <span className=" flex flex-col  sm:flex-row gap-2 md:gap-4 ">
-                    {email && (
-                      <a href={`mailto:${email}`}>
-                        <span className="flex flex-row gap-2 items-center">
-                          <FaEnvelope /> {email}
-                        </span>
-                      </a>
-                    )}
-                    {phone && (
-                      <a href={`tel:${phone}`}>
-                        <span className="flex flex-row gap-2 items-center">
-                          <FaPhone /> {phone}
-                        </span>
-                      </a>
-                    )}
-                  </span>
-                ) : null}
-              </div>
+              {email || phone ? (
+                <span className=" flex flex-col  sm:flex-row gap-2 md:gap-4 ">
+                  {email && (
+                    <a href={`mailto:${email}`}>
+                      <span className="flex flex-row gap-2 items-center">
+                        <FaEnvelope /> {email}
+                      </span>
+                    </a>
+                  )}
+                  {phone && (
+                    <a href={`tel:${phone}`}>
+                      <span className="flex flex-row gap-2 items-center">
+                        <FaPhone /> {phone}
+                      </span>
+                    </a>
+                  )}
+                </span>
+              ) : null}
             </DialogDescription>
 
             <div className="px-4 sm:px-6 lg:px-8  flex justify-center mt-0 mb-6">

@@ -45,7 +45,7 @@ export default function Reviews({
   };
 
   return (
-    <div className="relative px-5 mx-auto mt-5 max-w-7xl lg:mt-6">
+    <div className="relative px-5 mx-auto mt-5 max-w-7xl lg:mt-6 mb-4">
       <Carousel
         setApi={setCarouselApi}
         opts={{ loop: true }}
@@ -54,7 +54,7 @@ export default function Reviews({
         <CarouselContent className="!max-w-[calc(100vw-50px)] ">
           {reviews.map((review, index) => (
             <CarouselItem key={index}>
-              <Card className="bg-primary-100">
+              <Card className="bg-primary-950">
                 <CardContent className="flex items-center justify-center p-6">
                   <div className="p-2 sm:p-4 lg:p-6 bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform overflow-hidden">
                     <div className="text-xl md:text-2xl font-bold mb-1 flex flex-row items-center gap-4">

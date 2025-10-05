@@ -23,7 +23,7 @@ export default function Portfolio({
         <SectionHeader label="My Portfolio & Projects" />
 
         <Carousel
-          className=" bg-gray-100 my-5 py-5 mr-5 rounded-lg"
+          className=" bg-gray-100 my-5 py-5 px-5 mx-5 rounded-lg"
           opts={{
             loop: true,
             align: 'start'
@@ -34,7 +34,7 @@ export default function Portfolio({
             })
           ]}
         >
-          <CarouselContent className="ml-5">
+          <CarouselContent className="">
             {portfolio.map((item, index) => (
               <PortfolioItem key={index} index={index} item={item} />
             ))}
