@@ -38,8 +38,8 @@ export async function getResumesByPersonalName(
           lower(subscriberresume.personalName),
           personalName.toLowerCase()
         ),
-        eq(subscriberresume.resumeStatus, 'ACTIVE'),
-        eq(user.status, 'ACTIVE')
+        eq(subscriberresume.resumeStatus, 'active'),
+        eq(user.status, 'active')
       )
     );
 

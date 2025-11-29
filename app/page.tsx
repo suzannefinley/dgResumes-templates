@@ -11,7 +11,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import NameSearch from '@/components/NameSearch';
 import NameSearchResults from '@/components/NameSearchResults';
-import Footer from '@/components/Footer';
+//import Footer from '@/components/Footer';
 import NameSearchHeader from '@/components/NameSearchHeader';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -20,34 +20,64 @@ export async function generateMetadata(): Promise<Metadata> {
   const resume = await getResumeByUrl(rUrl);
   //console.log('Generating metadata for:', rUrl, resume);
 
-  return {
-    title: resume ? `${resume.personalName} - dgResume` : 'dgResume',
-    description: resume?.tagLine || 'Professional digital resumes',
-    keywords: `${resume.personalName} resume, dgResume, resume builder, digital resume,online resume, portfolio, cv, professional profile`,
-    authors: resume
-      ? [
-          {
-            name: resume.personalName || undefined,
-            url: process.env.SERVER_URL || ''
-          }
-        ]
-      : [{ name: 'dgResume', url: process.env.SERVER_URL || '' }],
-    creator: 'dgResume',
-    publisher: 'dgResume',
-    //this isn't working for some reason. Currently only the favicon in the app folder is used
-    icons: {
-      icon: `${resume.subscriberAvatar}` || 'icon.ico'
-    },
-    openGraph: {
+  if (resume) {
+    return {
       title: resume
         ? `${resume.personalName} - dgResume`
         : 'dgResume',
       description: resume?.tagLine || 'Professional digital resumes',
+      keywords: `${resume.personalName} resume, dgResume, resume builder, digital resume,online resume, portfolio, cv, professional profile`,
+      authors: resume
+        ? [
+            {
+              name: resume.personalName || undefined,
+              url: process.env.SERVER_URL || ''
+            }
+          ]
+        : [{ name: 'dgResume', url: process.env.SERVER_URL || '' }],
+      creator: 'dgResume',
+      publisher: 'dgResume',
+      icons: {
+        icon: '/images/logos/icons/favicon.svg',
+        shortcut: '/images/logos/icons/favicon.svg',
+        apple: '/images/logos/icons/favicon.svg'
+      },
+      openGraph: {
+        title: resume
+          ? `${resume.personalName} - dgResume`
+          : 'dgResume',
+        description:
+          resume?.tagLine || 'Professional digital resumes',
+        url: process.env.SERVER_URL || 'http://localhost:3000',
+        siteName: 'dgResume',
+        ...(resume?.subscriberAvatar && {
+          images: resume.subscriberAvatar
+        })
+      },
+      metadataBase: new URL(
+        process.env.SERVER_URL || 'http://localhost:3000'
+      )
+    };
+  }
+
+  return {
+    title: 'dgResume',
+    description: 'Professional digital resumes',
+    keywords:
+      'dgResume, resume builder, digital resume, online resume, portfolio, cv, professional profile',
+    authors: [
+      { name: 'dgResume', url: process.env.SERVER_URL || '' }
+    ],
+    creator: 'dgResume',
+    publisher: 'dgResume',
+    icons: {
+      icon: 'icon.ico'
+    },
+    openGraph: {
+      title: 'dgResume',
+      description: 'Professional digital resumes',
       url: process.env.SERVER_URL || 'http://localhost:3000',
-      siteName: 'dgResume',
-      ...(resume?.subscriberAvatar && {
-        images: resume.subscriberAvatar
-      })
+      siteName: 'dgResume'
     },
     metadataBase: new URL(
       process.env.SERVER_URL || 'http://localhost:3000'

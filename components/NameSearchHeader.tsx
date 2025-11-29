@@ -39,9 +39,9 @@ const NameSearchHeader = () => {
               asChild
               className="bg-[#d97706] rounded-xl text-primary-50 h5-semibold md:h6-semibold tracking-wider hover:bg-primary-600 text-primary-50 h5-semibold md:h6-semibold"
             >
-              <Link href={process.env.APP_URL || '/'}>
-                <PersonStanding className="size-6" /> Sign Up
-              </Link>
+              <a href={process.env.MAIN_APP_URL + '#pricing' || '/'}>
+                <PersonStanding className="size-6" /> Start Free Trial
+              </a>
             </Button>
           </div>
         </div>
