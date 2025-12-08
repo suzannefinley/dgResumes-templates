@@ -3,8 +3,10 @@
 
 import {
   pgTable,
+  pgView,
   //varchar,
   timestamp,
+  date,
   text,
   integer,
   foreignKey,
@@ -13,11 +15,11 @@ import {
   uniqueIndex,
   boolean,
   jsonb,
-  numeric
-  //primaryKey
+  numeric,
+  primaryKey
 } from 'drizzle-orm/pg-core';
 import { sql } from 'drizzle-orm';
-// import type { AdapterAccount } from '@auth/core/adapters';
+//import type { AdapterAccount } from '@auth/core/adapters';
 
 export const host = pgTable(
   'host',
@@ -39,51 +41,73 @@ export const host = pgTable(
   ]
 );
 
-// export const session = pgTable(
-//   'session',
-//   {
-//     sessionToken: text().primaryKey().notNull(),
-//     userId: uuid().notNull(),
-//     expires: timestamp({ precision: 6, mode: 'string' }).notNull()
-//   },
-//   table => [
-//     foreignKey({
-//       columns: [table.userId],
-//       foreignColumns: [user.id],
-//       name: 'session_userId_user_id_fk'
-//     })
-//   ]
-// );
+export const session = pgTable(
+  'session',
+  {
+    id: text('id').primaryKey(),
+    expiresAt: timestamp('expires_at').notNull(),
+    token: text('token').notNull().unique(),
+    createdAt: timestamp('created_at').defaultNow().notNull(),
+    updatedAt: timestamp('updated_at')
+      .$onUpdate(() => /* @__PURE__ */ new Date())
+      .notNull(),
+    ipAddress: text('ip_address'),
+    userAgent: text('user_agent'),
+    userId: text('user_id')
+      .notNull()
+      .references(() => user.id, { onDelete: 'cascade' })
+  },
+  table => [
+    foreignKey({
+      columns: [table.userId],
+      foreignColumns: [user.id],
+      name: 'session_userId_user_id_fk'
+    })
+  ]
+);
 
 export const user = pgTable(
   'user',
   {
-    id: uuid().defaultRandom().primaryKey().notNull(),
+    id: uuid('id').primaryKey().defaultRandom().notNull(),
     name: text().default('NO_NAME').notNull(),
     email: text().notNull(),
-    password: text(),
+    emailVerified: boolean(),
     role: text().default('SUBSCRIBER').notNull(),
-    emailVerified: timestamp({ precision: 6, mode: 'string' }),
     createdAt: timestamp({ precision: 6, mode: 'string' })
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
     image: text('image'),
     updatedAt: timestamp({ precision: 3, mode: 'string' }).notNull(),
-    status: text().default('NEW').notNull(),
-    planId: integer()
+    stripeCustomerId: text(),
+    resumeId: integer()
   },
   table => [
     uniqueIndex('user_email_idx').using(
       'btree',
       table.email.asc().nullsLast().op('text_ops')
-    ),
-    foreignKey({
-      columns: [table.planId],
-      foreignColumns: [plan.planId],
-      name: 'user_planId_plan_id_fk'
-    })
+    )
   ]
 );
+
+// The status and plan are coming from the subscription table
+// that Stripe updates
+export const vwUser = pgView('vw_user', {
+  id: uuid('id').primaryKey().defaultRandom().notNull(),
+  name: text(),
+  email: text().notNull(),
+  emailVerified: boolean(),
+  role: text(),
+  createdAt: timestamp({ precision: 6, mode: 'string' }),
+  image: text('image'),
+  updatedAt: timestamp({ precision: 3, mode: 'string' }),
+  status: text(),
+  planId: integer(),
+  stripeCustomerId: text(),
+  resumeId: integer(),
+  stripeSubscriptionName: text(),
+  planName: text()
+}).existing();
 
 export const template = pgTable(
   'template',
@@ -91,6 +115,7 @@ export const template = pgTable(
     templateId: serial().primaryKey().notNull(),
     name: text().notNull(),
     image: text().notNull(),
+    demourl: text(),
     description: text().notNull(),
     isFeatured: boolean().default(false).notNull(),
     createdAt: timestamp({ precision: 6, mode: 'string' })
@@ -212,10 +237,17 @@ export const plan = pgTable(
   {
     planId: serial().primaryKey().notNull(),
     name: text().notNull(),
+    payFreqCd: text().default('M').notNull(),
+    stripePriceId: text(),
+    stripePaymentLink: text(),
+    stripeSubscriptionName: text(),
     description: text().notNull(),
     maxResumeCnt: integer().notNull(),
     isActive: boolean().default(true).notNull(),
-    price: numeric({ precision: 12, scale: 2 })
+    priceMonth: numeric({ precision: 12, scale: 2 })
+      .default('0')
+      .notNull(),
+    priceYear: numeric({ precision: 12, scale: 2 })
       .default('0')
       .notNull(),
     createdAt: timestamp({ precision: 6, mode: 'string' })
@@ -224,12 +256,20 @@ export const plan = pgTable(
     updatedAt: timestamp({ precision: 3, mode: 'string' }).notNull(),
     maxActiveResumeCnt: integer().default(0).notNull(),
     maxProfileProjectCnt: integer().default(0).notNull(),
-    payFreq: text().default('MONTHLY').notNull()
+    payFreq: text().default('MONTHLY').notNull(),
+    discount: numeric({ precision: 6, scale: 2 })
+      .default('0')
+      .notNull(),
+    trialPeriodDays: integer().default(0).notNull(),
+    features: text().array(),
+    popular: boolean().default(false).notNull(),
+    limits: text().array()
   },
   table => [
-    uniqueIndex('plan_name_idx').using(
+    uniqueIndex('plan_name_freqCd_idx').using(
       'btree',
-      table.name.asc().nullsLast().op('text_ops')
+      table.name.asc().nullsLast().op('text_ops'),
+      table.payFreqCd.asc().nullsLast().op('text_ops')
     )
   ]
 );
@@ -262,68 +302,90 @@ export const project = pgTable(
   ]
 );
 
-// export const verificationtoken = pgTable(
-//   'verificationtoken',
-//   {
-//     identifier: text().notNull(),
-//     token: text().notNull(),
-//     expires: timestamp({ precision: 3, mode: 'string' }).notNull()
-//   },
-//   table => [
-//     primaryKey({
-//       columns: [table.identifier, table.token],
-//       name: 'verificationtoken_pkey'
-//     })
-//   ]
-// );
+export const verification = pgTable('verification', {
+  id: text('id').primaryKey(),
+  identifier: text('identifier').notNull(),
+  value: text('value').notNull(),
+  expiresAt: timestamp('expires_at').notNull(),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  updatedAt: timestamp('updated_at')
+    .defaultNow()
+    .$onUpdate(() => /* @__PURE__ */ new Date())
+    .notNull()
+});
 
-// export const account = pgTable(
-//   'account',
-//   {
-//     userId: uuid().notNull(),
-//     type: text('type').$type<AdapterAccount['type']>().notNull(),
-//     provider: text().notNull(),
-//     providerAccountId: text().notNull(),
-//     refreshToken: text('refresh_token'),
-//     accessToken: text('access_token'),
-//     expiresAt: integer('expires_at'),
-//     tokenType: text('token_type'),
-//     scope: text(),
-//     idToken: text('id_token'),
-//     sessionState: text('session_state')
-//   },
-//   table => [
-//     foreignKey({
-//       columns: [table.userId],
-//       foreignColumns: [user.id],
-//       name: 'account_userId_user_id_fk'
-//     }),
-//     primaryKey({
-//       columns: [table.provider, table.providerAccountId],
-//       name: 'account_provider_providerAccountId_pk'
-//     })
-//   ]
-// );
+export const account = pgTable(
+  'account',
+  {
+    id: text().primaryKey().notNull(),
+    userId: uuid().notNull(),
+    providerId: text().notNull(),
+    accountId: text().notNull(),
+    refreshToken: text('refresh_token'),
+    accessToken: text('access_token'),
+    accessTokenExpiresAt: timestamp('access_token_expires_at'),
+    refreshTokenExpiresAt: timestamp('refresh_token_expires_at'),
+    scope: text(),
+    idToken: text('id_token'),
+    password: text('password'),
+    createdAt: timestamp('created_at').defaultNow().notNull(),
+    updatedAt: timestamp('updated_at')
+      .$onUpdate(() => /* @__PURE__ */ new Date())
+      .notNull()
+  },
+  table => [
+    foreignKey({
+      columns: [table.userId],
+      foreignColumns: [user.id],
+      name: 'account_userId_user_id_fk'
+    })
+  ]
+);
 
-// export const authenticators = pgTable(
-//   'authenticator',
-//   {
-//     credentialID: text('credentialID').notNull().unique(),
-//     userId: uuid('userId')
-//       .notNull()
-//       .references(() => user.id, { onDelete: 'cascade' }),
-//     providerAccountId: text('providerAccountId').notNull(),
-//     credentialPublicKey: text('credentialPublicKey').notNull(),
-//     counter: integer('counter').notNull(),
-//     credentialDeviceType: text('credentialDeviceType').notNull(),
-//     credentialBackedUp: boolean('credentialBackedUp').notNull(),
-//     transports: text('transports')
-//   },
-//   authenticator => [
-//     {
-//       compositePK: primaryKey({
-//         columns: [authenticator.userId, authenticator.credentialID]
-//       })
-//     }
-//   ]
-// );
+export const authenticators = pgTable(
+  'authenticator',
+  {
+    credentialID: text('credentialID').notNull().unique(),
+    userId: uuid('userId')
+      .notNull()
+      .references(() => user.id, { onDelete: 'cascade' }),
+    providerAccountId: text('providerAccountId').notNull(),
+    credentialPublicKey: text('credentialPublicKey').notNull(),
+    counter: integer('counter').notNull(),
+    credentialDeviceType: text('credentialDeviceType').notNull(),
+    credentialBackedUp: boolean('credentialBackedUp').notNull(),
+    transports: text('transports')
+  },
+  authenticator => [
+    {
+      compositePK: primaryKey({
+        columns: [authenticator.userId, authenticator.credentialID]
+      })
+    }
+  ]
+);
+
+export const subscription = pgTable('subscription', {
+  id: text('id').primaryKey().notNull(),
+  plan: text('plan'),
+  referenceId: uuid('referenceId')
+    .notNull()
+    .references(() => user.id, { onDelete: 'cascade' }),
+  stripeCustomerId: text('stripeCustomerId'),
+  stripeSubscriptionId: text('stripeSubscriptionId'),
+  status: text('status').notNull(),
+  periodStart: date('periodStart'),
+  periodEnd: date('periodEnd'),
+  cancelAtPeriodEnd: boolean('cancelAtPeriodEnd'),
+  seats: integer('seats'),
+  trialStart: date('trialStart'),
+  trialEnd: date('trialEnd'),
+  cancelAt: timestamp('cancelAt'),
+  canceledAt: timestamp('canceledAt'),
+  cancellationFeedback: text('cancellationFeedback'),
+  cancellationComment: text('cancellationComment'),
+  createdAt: timestamp('createdAt').defaultNow().notNull(),
+  updatedAt: timestamp('updatedAt')
+    .$onUpdate(() => /* @__PURE__ */ new Date())
+    .notNull()
+});

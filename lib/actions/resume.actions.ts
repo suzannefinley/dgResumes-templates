@@ -3,13 +3,14 @@
 // import { isRedirectError } from 'next/dist/client/components/redirect-error';
 
 import db from '@/db/drizzle';
-import { and, eq, sql } from 'drizzle-orm';
+import { and, eq, sql, or } from 'drizzle-orm';
 import {
   uploadfile,
   subscriberresume,
   template,
   project,
-  user
+  user,
+  subscription
 } from '@/drizzle/schema';
 import { alias } from 'drizzle-orm/pg-core';
 import { formatError } from '@/lib/utils';
@@ -23,7 +24,9 @@ export async function getResumesByPersonalName(
     );
   //only return resumes where the resumeStatus is 'ACTIVE'
   // and personalName matches (case insensitive)
-  // and the subscriber status is 'ACTIVE'
+  // and the subscription status is 'active', 'trialing' or 'demo'
+
+  const s = alias(subscription, 's');
 
   const resumeList = await db
     .select({
@@ -31,15 +34,22 @@ export async function getResumesByPersonalName(
       url: subscriberresume.url
     })
     .from(subscriberresume)
-    .innerJoin(user, eq(subscriberresume.userId, user.id))
+    .innerJoin(
+      subscription,
+      eq(subscriberresume.userId, s.referenceId)
+    )
     .where(
       and(
         eq(
           lower(subscriberresume.personalName),
           personalName.toLowerCase()
         ),
-        eq(subscriberresume.resumeStatus, 'active'),
-        eq(user.status, 'active')
+        eq(lower(subscriberresume.resumeStatus), 'active'),
+        or(
+          eq(s.status, 'active'),
+          eq(s.status, 'trialing'),
+          eq(s.status, 'demo') //this is manually set for the demo user
+        )
       )
     );
 
@@ -56,6 +66,7 @@ export async function getResumeByUrl(rUrl?: string) {
   const ufp = alias(uploadfile, 'ufp');
   const ufr = alias(uploadfile, 'ufr');
   const t = alias(template, 't');
+  const s = alias(subscription, 's');
   const u = alias(user, 'u');
 
   try {
@@ -84,6 +95,7 @@ export async function getResumeByUrl(rUrl?: string) {
         subscriberAvatar: u.image
       })
       .from(sr)
+      .innerJoin(s, eq(sr.userId, s.referenceId))
       .innerJoin(u, eq(sr.userId, u.id))
       .leftJoin(t, eq(sr.templateId, t.templateId))
       .leftJoin(ufp, eq(sr.resumePersonalImageId, ufp.uploadFileId))
@@ -91,8 +103,12 @@ export async function getResumeByUrl(rUrl?: string) {
       .where(
         and(
           eq(sr.url, rUrl),
-          eq(sr.resumeStatus, 'ACTIVE'),
-          eq(u.status, 'ACTIVE')
+          eq(lower(sr.resumeStatus), 'active'),
+          or(
+            eq(s.status, 'active'),
+            eq(s.status, 'trialing'),
+            eq(s.status, 'demo') //this is manually set for the demo user
+          )
         )
       );
 

@@ -3,13 +3,12 @@ import {
   environment,
   host,
   user,
-  //session,
-  plan,
+  session,
   template,
   uploadfile,
   subscriberresume,
-  project
-  //account
+  project,
+  account
 } from './schema';
 
 export const hostRelations = relations(host, ({ one, many }) => ({
@@ -28,26 +27,18 @@ export const environmentRelations = relations(
   })
 );
 
-// export const sessionRelations = relations(session, ({ one }) => ({
-//   user: one(user, {
-//     fields: [session.userId],
-//     references: [user.id]
-//   })
-// }));
-
-export const userRelations = relations(user, ({ one, many }) => ({
-  //sessions: many(session),
-  plan: one(plan, {
-    fields: [user.planId],
-    references: [plan.planId]
-  }),
-  uploadFiles: many(uploadfile),
-  subscriberResumes: many(subscriberresume)
-  //accounts: many(account)
+export const sessionRelations = relations(session, ({ one }) => ({
+  user: one(user, {
+    fields: [session.userId],
+    references: [user.id]
+  })
 }));
 
-export const planRelations = relations(plan, ({ many }) => ({
-  users: many(user)
+export const userRelations = relations(user, ({ many }) => ({
+  sessions: many(session),
+  uploadFiles: many(uploadfile),
+  subscriberResumes: many(subscriberresume),
+  accounts: many(account)
 }));
 
 export const templateRelations = relations(
@@ -97,9 +88,9 @@ export const projectRelations = relations(project, ({ one }) => ({
   })
 }));
 
-// export const accountRelations = relations(account, ({ one }) => ({
-//   user: one(user, {
-//     fields: [account.userId],
-//     references: [user.id]
-//   })
-// }));
+export const accountRelations = relations(account, ({ one }) => ({
+  user: one(user, {
+    fields: [account.userId],
+    references: [user.id]
+  })
+}));

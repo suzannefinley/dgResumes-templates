@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
@@ -16,6 +18,16 @@ const Footer = () => {
             className="text-gray-700 font-bold hover:underline"
           >
             Get Your Own dgResume Today!
+            <span className="flex justify-center mt-2 mx-2">
+              <Image
+                src="/images/logo.svg"
+                width={160}
+                height={200}
+                alt={`${process.env.MAIN_APP_URL} logo`}
+                priority={true}
+                className="rounded-xl shadow-md dark:shadow-gray-100"
+              />
+            </span>
           </a>
         </div>
       </div>

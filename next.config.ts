@@ -1,6 +1,10 @@
 import type { NextConfig } from 'next';
+import path from 'path/win32';
 
 const nextConfig: NextConfig = {
+  turbopack: {
+    root: path.join(__dirname, '..') // Set to parent directory or monorepo root
+  },
   images: {
     remotePatterns: [
       {
