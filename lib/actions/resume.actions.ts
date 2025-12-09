@@ -45,11 +45,7 @@ export async function getResumesByPersonalName(
           personalName.toLowerCase()
         ),
         eq(lower(subscriberresume.resumeStatus), 'active'),
-        or(
-          eq(s.status, 'active'),
-          eq(s.status, 'trialing'),
-          eq(s.status, 'demo') //this is manually set for the demo user
-        )
+        or(eq(s.status, 'active'), eq(s.status, 'trialing'))
       )
     );
 
@@ -109,6 +105,71 @@ export async function getResumeByUrl(rUrl?: string) {
             eq(s.status, 'trialing'),
             eq(s.status, 'demo') //this is manually set for the demo user
           )
+        )
+      );
+
+    if (!resume) throw new Error('getResumeByUrl Resume not found');
+    //console.log('resume: ' + resume[0]);
+    return resume[0];
+  } catch (error) {
+    console.error('Error in getResumeByUrl:', error);
+    throw new Error(formatError(error));
+  }
+}
+
+export async function getResumeByHostCdSubdomain({
+  hostCd,
+  subdomain
+}: {
+  hostCd: string;
+  subdomain: string;
+}) {
+  console.log('getResumeByHostCdSubdomain hostCd:', hostCd);
+  console.log('getResumeByHostCdSubdomain subdomain:', subdomain);
+  const sr = alias(subscriberresume, 'sr');
+  const ufp = alias(uploadfile, 'ufp');
+  const ufr = alias(uploadfile, 'ufr');
+  const t = alias(template, 't');
+  const s = alias(subscription, 's');
+  const u = alias(user, 'u');
+
+  try {
+    const resume = await db
+      .select({
+        resumeId: sr.resumeId,
+        title: sr.title,
+        phone: sr.phone,
+        email: sr.email,
+        personalName: sr.personalName,
+        tagLine: sr.tagLine,
+        introVideo: sr.introVideo,
+        introduction: sr.introduction,
+        experience: sr.experience,
+        education: sr.education,
+        skills: sr.skills,
+        awards: sr.awards,
+        reviews: sr.reviews,
+        certifications: sr.certifications,
+        socialMedia: sr.socialMedia,
+        resumeStatus: sr.resumeStatus,
+        templateName: t.name,
+        personalImageUrl: ufp.uploadFileUrl,
+        resumeUploadUrl: ufr.uploadFileUrl,
+        subscriberEmail: u.email,
+        subscriberAvatar: u.image
+      })
+      .from(sr)
+      .innerJoin(s, eq(sr.userId, s.referenceId))
+      .innerJoin(u, eq(sr.userId, u.id))
+      .leftJoin(t, eq(sr.templateId, t.templateId))
+      .leftJoin(ufp, eq(sr.resumePersonalImageId, ufp.uploadFileId))
+      .leftJoin(ufr, eq(sr.resumeUploadId, ufr.uploadFileId))
+      .where(
+        and(
+          eq(lower(sr.hostCd), lower(hostCd)),
+          eq(lower(sr.subdomain), lower(subdomain)),
+          eq(lower(sr.resumeStatus), 'active'),
+          or(eq(s.status, 'active'), eq(s.status, 'trialing'))
         )
       );
 

@@ -42,8 +42,7 @@ const Navy = ({
   resume: Resume;
   projects: PortfolioProject[];
 }) => {
-  const bgImageAttribute =
-    "Photo by <a href='https://unsplash.com/@codioful?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash'>Codioful (Formerly Gradienta)</a> on <a href='https://unsplash.com/photos/blue-and-black-digital-wallpaper-bKESVqfxass?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash'>Unsplash</a>";
+  const bgImageAttribute = `Photo by <a href="https://unsplash.com/@dannypostma?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Danny Postma</a> on <a href="https://unsplash.com/photos/a-man-in-a-blue-shirt-smiling-at-the-camera-zNxOw2JFNKs?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`;
 
   const [showContactForm, setShowContactForm] = useState(false);
   const linkClasses = 'text-blue-800 underline text-sm font-semibold';
@@ -277,7 +276,7 @@ const Navy = ({
                         width={288}
                         height={288}
                         alt={resume.personalName ?? 'Profile image'}
-                        className="w-72 h-72 rounded-full object-cover shadow-2xl relative z-10 border-4 border-white"
+                        className="w-auto h-72 rounded-full object-cover shadow-2xl relative z-10 border-4 border-white"
                       />
                     ) : null}
                   </div>
