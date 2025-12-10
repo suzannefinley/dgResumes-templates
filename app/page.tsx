@@ -102,25 +102,25 @@ export default async function Home({
   console.log('Search query:', query);
   console.log(query.dgr);
 
-  let hostCd = '';
-  let subdomain = '';
+  // let hostCd = '';
+  // let subdomain = '';
 
-  for (const [key, value] of Object.entries(query)) {
-    console.log(`key: ${key}`);
-    console.log(`value: ${value}`);
-    hostCd = key;
-    subdomain = Array.isArray(value) ? value[0] || '' : value || '';
-  }
+  // for (const [key, value] of Object.entries(query)) {
+  //   console.log(`key: ${key}`);
+  //   console.log(`value: ${value}`);
+  //   hostCd = key;
+  //   subdomain = Array.isArray(value) ? value[0] || '' : value || '';
+  // }
 
   const rUrl: string = headersList.get('host') as string; // to get domain
   console.log(`domain: ${rUrl}`);
 
-  // const resume = await getResumeByUrl(rUrl);
-  const resume = await getResumeByHostCdSubdomain({
-    hostCd: hostCd,
-    subdomain: subdomain
-  });
-  console.log('resume:', resume);
+  const resume = await getResumeByUrl(rUrl);
+  // const resume = await getResumeByHostCdSubdomain({
+  //   hostCd: hostCd,
+  //   subdomain: subdomain
+  // });
+  //console.log('resume:', resume);
   // only resumes of ACTIVE subscribers are returned
   // if no resume is found, show the NameSearch component
   // to allow searching by name
