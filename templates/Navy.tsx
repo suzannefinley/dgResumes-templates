@@ -322,7 +322,7 @@ const Navy = ({
                     >
                       <iframe
                         suppressHydrationWarning={true}
-                        className="w-75 h-50 shadow-2xl relative z-10 border-4 border-white dark:border-gray-800"
+                        className="w-75 h-50 shadow-2xl relative z-10 border-4 border-white"
                         src={resume.introVideo}
                         allowFullScreen
                       />
@@ -347,7 +347,7 @@ const Navy = ({
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center my-4">
                 <h3 className={headingClass}>Featured Projects</h3>
-                <p className="text-gray-600 dark:text-gray-300 text-lg">
+                <p className="text-gray-600 text-lg">
                   Some of my recent work that I&#39;m proud to share
                 </p>
               </div>
@@ -356,9 +356,9 @@ const Navy = ({
                   projects.map(project => (
                     <div
                       key={project.projectId}
-                      className="bg-white dark:bg-gray-900 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden"
+                      className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 overflow-hidden"
                     >
-                      <div className="h-48 flex justify-center bg-gradient-to-br from-blue-800 to-blue-200">
+                      <div className="h-48 flex justify-center items-center bg-gradient-to-br from-blue-800 to-blue-200">
                         {project.projectImageUrl ? (
                           <Image
                             src={project.projectImageUrl}
@@ -367,7 +367,7 @@ const Navy = ({
                             }
                             height={192}
                             width={192}
-                            className="rounded-2xl my-1"
+                            className="rounded-2xl m-1 h-42 w-auto object-cover shadow-md"
                           />
                         ) : null}
                       </div>
@@ -387,7 +387,7 @@ const Navy = ({
 
                       {project.technologies && (
                         <div
-                          className="px-6 mb-1"
+                          className="px-6 mb-1 bg-white"
                           suppressHydrationWarning={true}
                         >
                           <span className="mr-1 font-semibold">
@@ -420,7 +420,7 @@ const Navy = ({
                             href={project.website}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center text-primary-600 dark:text-primary-400 hover:text-primary-700 font-semibold"
+                            className="inline-flex items-center text-primary-600 hover:text-primary-700 font-semibold"
                           >
                             Website
                           </a>
@@ -430,7 +430,7 @@ const Navy = ({
                             href={project.github}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center text-primary-600 dark:text-primary-400 hover:text-primary-700 font-semibold"
+                            className="inline-flex items-center text-primary-600 hover:text-primary-700 font-semibold"
                           >
                             GitHub
                           </a>
@@ -638,19 +638,17 @@ const Navy = ({
                         </div>
                         {job.startDate && (
                           <div className="flex flex-row gap-3">
-                            <span className="text-gray-600 dark:text-gray-300">
+                            <span className="text-gray-600">
                               {job.startDate}
                             </span>
-                            <span className="text-gray-600 dark:text-gray-300">
-                              -
-                            </span>
+                            <span className="text-gray-600">-</span>
 
                             {job.endDate ? (
-                              <span className="text-gray-600 dark:text-gray-300">
+                              <span className="text-gray-600">
                                 {job.endDate}
                               </span>
                             ) : (
-                              <span className="text-gray-600 dark:text-gray-300">
+                              <span className="text-gray-600">
                                 Current
                               </span>
                             )}
@@ -658,7 +656,7 @@ const Navy = ({
                         )}
 
                         {job.responsibilities && (
-                          <div className="text-gray-600 dark:text-gray-300 mt-2 mb-4">
+                          <div className="text-gray-600 mt-2 mb-4">
                             <span className="font-bold text-lg">
                               Responsibilities:
                             </span>
@@ -671,7 +669,7 @@ const Navy = ({
                           </div>
                         )}
                         {job.achievements && (
-                          <div className="text-gray-600 dark:text-gray-300 mt-2 mb-4">
+                          <div className="text-gray-600 mt-2 mb-4">
                             <span className="font-bold text-lg">
                               Achievements:
                             </span>
