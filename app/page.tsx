@@ -4,8 +4,8 @@ import { Resume, PortfolioProject } from '@/types/resume';
 import React from 'react';
 import {
   getResumeByUrl,
-  getProjectsByResumeId,
-  getResumeByHostCdSubdomain
+  getProjectsByResumeId
+  //getResumeByHostCdSubdomain
 } from '@/lib/actions/resume.actions';
 //import Header from '@/components/Header';
 import type { Metadata } from 'next';
@@ -14,7 +14,6 @@ import NameSearch from '@/components/NameSearch';
 import NameSearchResults from '@/components/NameSearchResults';
 //import Footer from '@/components/Footer';
 import NameSearchHeader from '@/components/NameSearchHeader';
-import { host } from '@/drizzle/schema';
 
 export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
@@ -87,20 +86,14 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function Home({
-  searchParams
-}: {
-  searchParams: Promise<{
-    [key: string]: string | string[] | undefined;
-  }>;
-}) {
+export default async function Home() {
   const headersList = await headers();
-  for (const [key, value] of headersList.entries()) {
-    console.log(`${key}: ${value}`);
-  }
-  const query = await searchParams;
-  console.log('Search query:', query);
-  console.log(query.dgr);
+  // for (const [key, value] of headersList.entries()) {
+  //   console.log(`${key}: ${value}`);
+  // }
+  //const query = await searchParams;
+  // console.log('Search query:', query);
+  // console.log(query.dgr);
 
   // let hostCd = '';
   // let subdomain = '';

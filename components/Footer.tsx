@@ -7,8 +7,8 @@ const Footer = () => {
     <footer className="border-t bg-gray-200 text-gray-700 flex justify-center ">
       <div className="grid grid-cols-1 my-10 ">
         <div className="flex justify-center mb-5">
-          Copyright © {currentYear} {process.env.COMPANY_NAME}. All
-          Rights reserved.
+          © {currentYear} {process.env.COMPANY_NAME}. All Rights
+          reserved.
         </div>
         <div className="flex justify-center">
           <a
