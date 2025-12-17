@@ -47,6 +47,13 @@ const SimpleBlue = ({
     socialMedia
   } = setDataArrays(resume);
 
+  const demoImageAttribution =
+    'Photo by <a href="https://unsplash.com/@willsouzabr?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Willian Souza</a> on <a href="https://unsplash.com/photos/man-in-black-zip-up-jacket-p5BoBF0XJUA?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>';
+
+  const imageAlt = resume.personalName?.includes('Demo-')
+    ? demoImageAttribution
+    : resume.personalName!;
+
   //this will be used to decide the alternating background color
   //these need to be in the order they will appear on the page
   const sections = ['hero'];
@@ -312,17 +319,29 @@ const SimpleBlue = ({
                       src={resume.introVideo}
                       allowFullScreen
                     />
-                  ) : resume.personalImageUrl ? (
-                    <Image
-                      src={
-                        resume.personalImageUrl ??
-                        '/default-profile.png'
-                      }
-                      width={288}
-                      height={288}
-                      alt={resume.personalName ?? 'Profile image'}
-                      className="w-72 h-72 rounded-full object-cover shadow-2xl relative z-10 border-4 border-white dark:border-gray-800"
-                    />
+                  ) : null}
+                  {resume.personalImageUrl ? (
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Image
+                          src={
+                            resume.personalImageUrl ??
+                            '/default-profile.png'
+                          }
+                          width={288}
+                          height={288}
+                          alt={imageAlt}
+                          className="w-72 h-72 rounded-full object-cover shadow-2xl relative z-10 border-4 border-white dark:border-gray-800"
+                        />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p
+                          dangerouslySetInnerHTML={{
+                            __html: imageAlt
+                          }}
+                        />
+                      </TooltipContent>
+                    </Tooltip>
                   ) : null}
                 </div>
               </div>

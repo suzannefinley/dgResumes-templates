@@ -40,6 +40,13 @@ const Ocean = ({
   const [showContactForm, setShowContactForm] = useState(false);
   const linkClasses = 'text-blue-800 underline text-sm font-semibold';
 
+  const demoImageAttribution =
+    'Photo by <a href="https://unsplash.com/@ibidsy?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Clay Elliot</a> on <a href="https://unsplash.com/photos/woman-in-red-cardigan-smiling-mpDV4xaFP8c?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>';
+
+  const imageAlt = resume.personalName?.includes('Demo-')
+    ? demoImageAttribution
+    : resume.personalName!;
+
   const {
     experience,
     education,
@@ -103,15 +110,25 @@ const Ocean = ({
             <div className="flex-col  gap-5  text-left py-6 px-4 rounded-xl  items-center justify-center bg-blue-200/40  backdrop-blur-md text-blue-900">
               <div className="flex flex-col md:flex-row gap-15 items-center justify-center">
                 {resume.personalImageUrl && (
-                  <div className="flex my-2 transition-all duration-300 transform hover:-translate-y-2 overflow-hidden">
-                    <Image
-                      src={resume.personalImageUrl}
-                      alt={resume.personalName || 'Profile Image'}
-                      width={150}
-                      height={150}
-                      className="w-50 h-50 rounded-full object-cover border-1 border-gray-300 relative "
-                    />
-                  </div>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <div className="flex my-2 transition-all duration-300 transform hover:-translate-y-2 overflow-hidden">
+                        <Image
+                          src={resume.personalImageUrl}
+                          alt={imageAlt}
+                          width={150}
+                          height={150}
+                          className="w-50 h-50 rounded-full object-cover border-1 border-gray-300 relative "
+                        />
+                      </div>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p
+                        dangerouslySetInnerHTML={{ __html: imageAlt }}
+                        suppressHydrationWarning={true}
+                      />
+                    </TooltipContent>
+                  </Tooltip>
                 )}
                 {resume.introVideo && (
                   <div className="flex  my-2">

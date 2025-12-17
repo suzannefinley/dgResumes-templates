@@ -42,7 +42,11 @@ const Navy = ({
   resume: Resume;
   projects: PortfolioProject[];
 }) => {
-  const bgImageAttribute = `Photo by <a href="https://unsplash.com/@dannypostma?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Danny Postma</a> on <a href="https://unsplash.com/photos/a-man-in-a-blue-shirt-smiling-at-the-camera-zNxOw2JFNKs?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`;
+  const demoImageAttribution = `Photo by <a href="https://unsplash.com/@dannypostma?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Danny Postma</a> on <a href="https://unsplash.com/photos/a-man-in-a-blue-shirt-smiling-at-the-camera-zNxOw2JFNKs?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`;
+
+  const imageAlt = resume.personalName?.includes('Demo-')
+    ? demoImageAttribution
+    : resume.personalName!;
 
   const [showContactForm, setShowContactForm] = useState(false);
   const linkClasses = 'text-blue-800 underline text-sm font-semibold';
@@ -268,16 +272,23 @@ const Navy = ({
                     suppressHydrationWarning={true}
                   >
                     {resume.personalImageUrl ? (
-                      <Image
-                        src={
-                          resume.personalImageUrl ??
-                          '/default-profile.png'
-                        }
-                        width={288}
-                        height={288}
-                        alt={resume.personalName ?? 'Profile image'}
-                        className="w-auto h-72 rounded-full object-cover shadow-2xl relative z-10 border-4 border-white"
-                      />
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          <Image
+                            src={
+                              resume.personalImageUrl ??
+                              '/default-profile.png'
+                            }
+                            width={288}
+                            height={288}
+                            alt={imageAlt}
+                            className="w-auto h-72 rounded-full object-cover shadow-2xl relative z-10 border-4 border-white"
+                          />
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <span>{imageAlt}</span>
+                        </TooltipContent>
+                      </Tooltip>
                     ) : null}
                   </div>
                 </div>

@@ -21,7 +21,7 @@ export default function PortfolioItem({
   } = item;
   return (
     <div>
-      <CarouselItem className="md:basis-1/2 lg:basis-1/3">
+      <CarouselItem className="md:basis-1/3 lg:basis-1/3">
         <div className="flex px-3 py-3">
           <div
             key={index}
