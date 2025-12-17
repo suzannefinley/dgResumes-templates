@@ -290,8 +290,8 @@ const Navy = ({
                             dangerouslySetInnerHTML={{
                               __html: imageAlt
                             }}
+                            suppressHydrationWarning={true}
                           />
-                          supressHydrationWarning={true}
                         </TooltipContent>
                       </Tooltip>
                     ) : null}
