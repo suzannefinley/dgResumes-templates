@@ -44,7 +44,7 @@ const Navy = ({
 }) => {
   const demoImageAttribution = `Photo by <a href="https://unsplash.com/@dannypostma?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Danny Postma</a> on <a href="https://unsplash.com/photos/a-man-in-a-blue-shirt-smiling-at-the-camera-zNxOw2JFNKs?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`;
 
-  const imageAlt = resume.personalName?.includes('Demo-')
+  const imageAlt = resume.personalName?.includes('Demo ')
     ? demoImageAttribution
     : resume.personalName!;
 

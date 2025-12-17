@@ -43,7 +43,7 @@ const Ocean = ({
   const demoImageAttribution =
     'Photo by <a href="https://unsplash.com/@ibidsy?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Clay Elliot</a> on <a href="https://unsplash.com/photos/woman-in-red-cardigan-smiling-mpDV4xaFP8c?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>';
 
-  const imageAlt = resume.personalName?.includes('Demo-')
+  const imageAlt = resume.personalName?.includes('Demo ')
     ? demoImageAttribution
     : resume.personalName!;
 

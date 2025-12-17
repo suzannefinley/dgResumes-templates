@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import '@/components/Footer';
 import Footer from '@/components/Footer';
 import { Toaster } from '@/components/ui/sonner';
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Analytics } from '@vercel/analytics/next';
 
 const geistSans = Geist({

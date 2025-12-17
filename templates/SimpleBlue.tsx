@@ -50,7 +50,7 @@ const SimpleBlue = ({
   const demoImageAttribution =
     'Photo by <a href="https://unsplash.com/@willsouzabr?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Willian Souza</a> on <a href="https://unsplash.com/photos/man-in-black-zip-up-jacket-p5BoBF0XJUA?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>';
 
-  const imageAlt = resume.personalName?.includes('Demo-')
+  const imageAlt = resume.personalName?.includes('Demo ')
     ? demoImageAttribution
     : resume.personalName!;
 
