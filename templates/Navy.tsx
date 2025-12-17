@@ -286,7 +286,12 @@ const Navy = ({
                           />
                         </TooltipTrigger>
                         <TooltipContent>
-                          <span>{imageAlt}</span>
+                          <p
+                            dangerouslySetInnerHTML={{
+                              __html: imageAlt
+                            }}
+                          />
+                          supressHydrationWarning={true}
                         </TooltipContent>
                       </Tooltip>
                     ) : null}
