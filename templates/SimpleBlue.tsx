@@ -201,7 +201,7 @@ const SimpleBlue = ({
         {/* <!-- Hero Section --> */}
         <section
           id="hero"
-          className="m-20 h-[calc(100vh-150px)]md:h-[calc(100vh-100px)] flex items-center justify-center "
+          className="m-20 sm:m-16 sm:p-10 h-[calc(100vh-150px)]md:h-[calc(100vh-100px)] flex items-center justify-center "
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-10 items-center">
