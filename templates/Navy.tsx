@@ -113,7 +113,7 @@ const Navy = ({
                 </span>
                 {resume.personalName}
               </div>
-              <div className="flex pr-4 mx-auto md:mr-6 gap-4 items-center justify-end">
+              <div className="flex pr-4 mx-auto mr-2 md:mr-6 gap-4 items-center justify-end">
                 <a
                   href="#"
                   className="hover:text-blue-900 text-xl font-bold text-primary-800 transition-colors"
@@ -156,9 +156,10 @@ const Navy = ({
             <div className="flex-col  gap-5  text-left py-6 pr-4 pl-8 rounded-xl mt-4 items-center justify-center bg-primary-200/40  backdrop-blur-md ">
               <div className="grid lg:grid-cols-2 gap-10 items-center m-2">
                 <div className="text-center lg:text-left">
-                  <h1 className="text-2xl md:text-4xl font-bold mb-6 text-primary-50">
+                  <h1 className="text-2xl md:text-4xl font-bold  text-primary-50">
                     Hi, I&#39;m {resume.personalName}
                   </h1>
+                  <p className="mb-6 italic">{resume.title}</p>
                   <p className="text-xl md:text-2xl text-primary-100 mb-8">
                     {resume.tagLine}
                   </p>
