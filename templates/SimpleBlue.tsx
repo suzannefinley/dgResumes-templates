@@ -93,7 +93,7 @@ const SimpleBlue = ({
         <nav className="fixed top-0 w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-md z-50 border-b border-gray-200 dark:border-gray-700">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center py-4">
-              <div className="text-xl font-bold text-primary-600 dark:text-blue-300">
+              <div className="text-xl font-bold text-primary-600 dark:text-blue-300 mr-1">
                 {resume.personalName}
               </div>
               <div className="hidden lg:flex space-x-6 justify-items-center items-center">
