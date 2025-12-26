@@ -108,28 +108,35 @@ const Ocean = ({
           </div>
           <div className="container relative z-20 mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex-col  gap-5  text-left py-6 px-4 rounded-xl  items-center justify-center bg-blue-200/40  backdrop-blur-md text-blue-900">
-              <div className="flex flex-col md:flex-row gap-15 items-center justify-center">
-                {resume.personalImageUrl && (
-                  <Tooltip>
-                    <TooltipTrigger asChild>
-                      <div className="flex my-2 transition-all duration-300 transform hover:-translate-y-2 overflow-hidden">
-                        <Image
-                          src={resume.personalImageUrl}
-                          alt={imageAlt}
-                          width={150}
-                          height={150}
-                          className="w-50 h-50 rounded-full object-cover border-1 border-gray-300 relative "
+              <div className="flex flex-col md:flex-row gap-15 items-center justify-center mb-4">
+                <div className="flex-center">
+                  {resume.personalImageUrl && (
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <div className="flex my-2 transition-all duration-300 transform hover:-translate-y-2 overflow-hidden">
+                          <Image
+                            src={resume.personalImageUrl}
+                            alt={imageAlt}
+                            width={150}
+                            height={150}
+                            className="w-50 h-50 rounded-full object-cover border-1 border-gray-300 relative "
+                          />
+                        </div>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p
+                          dangerouslySetInnerHTML={{
+                            __html: imageAlt
+                          }}
+                          suppressHydrationWarning={true}
                         />
-                      </div>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p
-                        dangerouslySetInnerHTML={{ __html: imageAlt }}
-                        suppressHydrationWarning={true}
-                      />
-                    </TooltipContent>
-                  </Tooltip>
-                )}
+                      </TooltipContent>
+                    </Tooltip>
+                  )}
+                  <div className="flex justify-center italic text-2xl font-bold">
+                    {resume.title}
+                  </div>
+                </div>
                 {resume.introVideo && (
                   <div className="flex  my-2">
                     <iframe

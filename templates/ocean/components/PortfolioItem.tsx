@@ -21,7 +21,7 @@ export default function PortfolioItem({
   } = item;
   return (
     <div>
-      <CarouselItem className="md:basis-1/3 lg:basis-1/3">
+      <CarouselItem className="max-w-75">
         <div className="flex px-3 py-3">
           <div
             key={index}
@@ -42,6 +42,7 @@ export default function PortfolioItem({
               <div className="font-bold text-xl mb-1">
                 {projectName}
               </div>
+
               {role && role.length > 0 ? (
                 <div className="inline-block text-md">
                   <span className="pr-1 font-semibold">Role:</span>
