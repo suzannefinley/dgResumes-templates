@@ -209,6 +209,7 @@ const SimpleBlue = ({
                 <h1 className="text-2xl md:text-6xl font-bold mb-6 text-primary-600  dark:text-blue-600">
                   Hi, I&#39;m {resume.personalName}
                 </h1>
+                <p className="mb-6 italic">{resume.title}</p>
                 <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-8">
                   {resume.tagLine}
                 </p>
