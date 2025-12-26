@@ -72,7 +72,9 @@ export async function generateMetadata(): Promise<Metadata> {
     creator: 'dgResume',
     publisher: 'dgResume',
     icons: {
-      icon: 'icon.ico'
+      icon: '/images/logos/icons/favicon.svg',
+      shortcut: '/images/logos/icons/favicon.svg',
+      apple: '/images/logos/icons/favicon.svg'
     },
     openGraph: {
       title: 'dgResume',

@@ -3,7 +3,7 @@
 // import { isRedirectError } from 'next/dist/client/components/redirect-error';
 
 import db from '@/db/drizzle';
-import { and, eq, sql, or } from 'drizzle-orm';
+import { and, eq, sql, or, like } from 'drizzle-orm';
 import {
   uploadfile,
   subscriberresume,
@@ -22,6 +22,9 @@ export async function getResumesByPersonalName(
     throw new Error(
       'getResumeByPersonalName Missing the Personal Name'
     );
+
+  const pName = '%' + personalName.toLowerCase() + '%';
+
   //only return resumes where the resumeStatus is 'ACTIVE'
   // and personalName matches (case insensitive)
   // and the subscription status is 'active', 'trialing' or 'demo'
@@ -34,16 +37,10 @@ export async function getResumesByPersonalName(
       url: subscriberresume.url
     })
     .from(subscriberresume)
-    .innerJoin(
-      subscription,
-      eq(subscriberresume.userId, s.referenceId)
-    )
+    .innerJoin(s, eq(subscriberresume.userId, s.referenceId))
     .where(
       and(
-        eq(
-          lower(subscriberresume.personalName),
-          personalName.toLowerCase()
-        ),
+        like(lower(subscriberresume.personalName), pName),
         eq(lower(subscriberresume.resumeStatus), 'active'),
         or(eq(s.status, 'active'), eq(s.status, 'trialing'))
       )

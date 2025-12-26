@@ -11,6 +11,7 @@ const fetchData = async (query: string | null) => {
 };
 
 const NameSearchResults = () => {
+  console.log('NameSearchResults component rendered');
   const searchParams = useSearchParams();
   const query = searchParams.get('query');
   const [results, setResults] = useState<
@@ -22,6 +23,7 @@ const NameSearchResults = () => {
 
   useEffect(() => {
     const loadData = async () => {
+      console.log('Loading data for query:', query);
       const data = await fetchData(query);
       setResults(data);
     };

@@ -6,9 +6,19 @@ const Footer = () => {
   return (
     <footer className="border-t bg-gray-200 text-gray-700 flex justify-center ">
       <div className="grid grid-cols-1 my-10 ">
-        <div className="flex justify-center mb-5">
+        <div className="flex justify-center ">
           © {currentYear} {process.env.COMPANY_NAME}. All Rights
           reserved.
+        </div>
+        <div className="flex justify-center mb-5">
+          <a
+            href="/legal/disclaimer"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted-foreground hover:underline"
+          >
+            Disclaimer
+          </a>
         </div>
         <div className="flex justify-center">
           <a
