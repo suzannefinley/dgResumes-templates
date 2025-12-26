@@ -201,12 +201,12 @@ const SimpleBlue = ({
         {/* <!-- Hero Section --> */}
         <section
           id="hero"
-          className="h-[calc(100vh-100px)] flex items-center justify-center "
+          className="m-20 h-[calc(100vh-150px)]md:h-[calc(100vh-100px)] flex items-center justify-center "
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-10 items-center">
               <div className="text-center lg:text-left">
-                <h1 className="text-2xl md:text-6xl font-bold mb-6 text-primary-600  dark:text-blue-600">
+                <h1 className="text-2xl md:text-6xl font-bold sm:mb-2 text-primary-600  dark:text-blue-600">
                   Hi, I&#39;m {resume.personalName}
                 </h1>
                 <p className="mb-6 italic">{resume.title}</p>
