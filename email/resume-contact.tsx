@@ -10,25 +10,18 @@ import {
   Tailwind,
   Text
 } from '@react-email/components';
-import 'dotenv/config';
+import { SERVER_EMAIL_LOGO_URL, APP_NAME } from '@/lib/constants';
+import { EmailHeader } from './header';
+import { EmailFooter } from './footer';
 
 const ResumeContactEmail = (data: ContactForm) => {
-  const AppUrl = process.env.APP_URL;
   return (
     <Html>
       <Tailwind>
         <Head />
         <Body className="font-sans bg-gray-200 text-gray-900">
           <Container className="max-w-xl">
-            <Heading>
-              <Img
-                src={`${AppUrl}/public/images/logo.svg`}
-                width="150"
-                height="50"
-                alt="dgResume Logo"
-                className="mx-auto mb-4"
-              />
-            </Heading>
+            <EmailHeader />
             <Heading className="text-center text-lg mb-4">
               New Message from Your dgResume contact form
             </Heading>
@@ -37,6 +30,7 @@ const ResumeContactEmail = (data: ContactForm) => {
               <Text>Email: {data.email}</Text>
               <Text>Message: {data.message}</Text>
             </Section>
+            <EmailFooter />
           </Container>
         </Body>
       </Tailwind>

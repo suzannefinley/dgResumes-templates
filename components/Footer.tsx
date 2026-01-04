@@ -30,7 +30,7 @@ const Footer = () => {
             Get Your Own dgResume Today!
             <span className="flex justify-center mt-2 mx-2">
               <Image
-                src="/images/logo.svg"
+                src="/images/logo.jpg"
                 width={160}
                 height={200}
                 alt={`${process.env.MAIN_APP_URL} logo`}
