@@ -5,12 +5,12 @@ import {
   Head,
   Heading,
   Html,
-  Img,
+  //Img,
   Section,
   Tailwind,
   Text
 } from '@react-email/components';
-import { SERVER_EMAIL_LOGO_URL, APP_NAME } from '@/lib/constants';
+//import { SERVER_EMAIL_LOGO_URL, APP_NAME } from '@/lib/constants';
 import { EmailHeader } from './header';
 import { EmailFooter } from './footer';
 

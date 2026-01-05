@@ -1,6 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { APP_NAME, SERVER_URL } from '@/lib/constants';
+import {
+  APP_NAME,
+  SERVER_URL,
+  SERVER_SIGNIN_URL
+} from '@/lib/constants';
 import 'dotenv/config';
 import { Button } from './ui/button';
 import { UserIcon, PersonStanding } from 'lucide-react';
@@ -31,7 +35,7 @@ const NameSearchHeader = () => {
               asChild
               className="bg-gray-200 text-gray-900 hover:bg-gray-300 border-1 border-white rounded-xl"
             >
-              <Link href={`${process.env.NEXTAUTH_URL}/login`}>
+              <Link href={SERVER_SIGNIN_URL}>
                 <UserIcon className="size-6" /> Sign In
               </Link>
             </Button>

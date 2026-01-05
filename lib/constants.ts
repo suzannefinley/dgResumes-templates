@@ -23,3 +23,7 @@ export const APP_DESCRIPTION =
 
 export const SERVER_URL =
   process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000';
+
+export const SERVER_SIGNIN_URL =
+  process.env.NEXT_PUBLIC_SERVER_SIGNIN_URL ||
+  'http://localhost:3000/signin';
