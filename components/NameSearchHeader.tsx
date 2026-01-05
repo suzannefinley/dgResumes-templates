@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { APP_NAME } from '@/lib/constants';
+import { APP_NAME, SERVER_URL } from '@/lib/constants';
 import 'dotenv/config';
 import { Button } from './ui/button';
 import { UserIcon, PersonStanding } from 'lucide-react';
@@ -10,17 +10,17 @@ const NameSearchHeader = () => {
     <header className="border-b bg-primary-900 text-white">
       <div className="flex items-center py-4 px-2 mr-6">
         <div className="flex items-center">
-          <Link href="/" className="flex items-center">
+          <Link href={SERVER_URL} className="flex items-center">
             <Image
-              priority={true}
-              src={'/images/logo.svg'}
-              color="red"
-              width={48}
-              height={48}
+              src="/images/logos/logo.jpg"
+              width={173}
+              height={64}
               alt={`${APP_NAME} logo`}
+              priority={true}
+              className="rounded-xl shadow-md dark:shadow-gray-100 h-16 w-auto"
             />
-            <span className="hidden sm:flex sm:font-semibold sm:text-1xl md:font-bold md:text-2xl ml-3 text-nowrap">
-              {APP_NAME}
+            <span className="hidden sm:flex sm:font-semibold sm:text-1xl md:font-bold md:text-2xl ml-3 pl-2 text-nowrap">
+              {`${APP_NAME} - Search`}
             </span>
           </Link>
         </div>

@@ -33,6 +33,8 @@ export async function getResumesByPersonalName(
 
   const resumeList = await db
     .select({
+      personalName: subscriberresume.personalName,
+      tagLine: subscriberresume.tagLine,
       title: subscriberresume.title,
       url: subscriberresume.url
     })

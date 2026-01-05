@@ -11,11 +11,16 @@ const fetchData = async (query: string | null) => {
 };
 
 const NameSearchResults = () => {
-  console.log('NameSearchResults component rendered');
+  //console.log('NameSearchResults component rendered');
   const searchParams = useSearchParams();
   const query = searchParams.get('query');
   const [results, setResults] = useState<
-    { title: string | null; url: string | null }[]
+    {
+      title: string | null;
+      url: string | null;
+      personalName: string | null;
+      tagLine: string | null;
+    }[]
   >([]);
 
   //console.log('query:', query);
@@ -42,7 +47,7 @@ const NameSearchResults = () => {
               (item, index) => (
                 console.log('item:', item),
                 (
-                  <li key={index} className="mb-2">
+                  <li key={index} className="mb-4">
                     <Link
                       className="mr-1 font-bold text-blue-200 underline"
                       href={
@@ -53,11 +58,10 @@ const NameSearchResults = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      {item.url?.includes('localhost')
-                        ? `http://${item.url}`
-                        : `https://${item.url}`}
+                      {item.personalName}
                     </Link>
-                    {item.title}
+                    <p>{item.title}</p>
+                    <p>{item.tagLine ? ` - ${item.tagLine}` : ''}</p>
                   </li>
                 )
               )

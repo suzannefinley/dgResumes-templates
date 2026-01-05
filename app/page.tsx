@@ -122,9 +122,9 @@ export default async function Home() {
 
   if (!resume) {
     return (
-      <div className="bg-primary-700 flex flex-col h-[calc(100vh-65px)]">
+      <div className="bg-primary-700 flex flex-col min-h-screen">
         <NameSearchHeader />
-        <div className="flex flex-col my-16 max-h-[calc(100vh-65px)]">
+        <div className="flex flex-col my-16">
           <NameSearch noResumeUrl={rUrl} />
           <NameSearchResults />
         </div>

@@ -1,5 +1,5 @@
 export const APP_NAME =
-  process.env.NEXT_PUBLIC_APP_NAME || 'Digital Resumes';
+  process.env.NEXT_PUBLIC_APP_NAME || 'dgResumes';
 
 export const SENDER_EMAIL =
   process.env.SENDER_EMAIL || 'support@dgResumes.com';
