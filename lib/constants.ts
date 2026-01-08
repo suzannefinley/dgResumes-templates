@@ -4,12 +4,13 @@ export const APP_NAME =
 export const SENDER_EMAIL =
   process.env.SENDER_EMAIL || 'support@dgResumes.com';
 
-export const SERVER_EMAIL_LOGO_URL =
-  process.env.NEXT_PUBLIC_SERVER_EMAIL_LOGO_URL ||
-  'https://dgresumes.com/images/logos/logo-color-b.png';
+export const SERVER_LOGO_URL =
+  process.env.NEXT_PUBLIC_SERVER_LOGO_URL ||
+  'https://dgresumes.com/images/logos/logo-color-b.jpg';
 
 export const BUSINESS_ADDRESS =
-  process.env.BUSINESS_ADDRESS || '123 Main St, Springfield, USA';
+  process.env.BUSINESS_ADDRESS ||
+  '24200 Southwest Freeway Suite 402-194, Rosenberg, TX 77471';
 
 export const SUPPORT_EMAIL =
   process.env.CONTACT_EMAIL || 'support@dgResumes.com';

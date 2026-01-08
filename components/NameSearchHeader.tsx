@@ -14,7 +14,11 @@ const NameSearchHeader = () => {
     <header className="border-b bg-primary-900 text-white">
       <div className="flex items-center py-4 px-2 mr-6">
         <div className="flex items-center">
-          <Link href={SERVER_URL} className="flex items-center">
+          <Link
+            href={SERVER_URL}
+            className="flex items-center"
+            target="_blank"
+          >
             <Image
               src="/images/logos/logo.jpg"
               width={173}
@@ -35,7 +39,7 @@ const NameSearchHeader = () => {
               asChild
               className="bg-gray-200 text-gray-900 hover:bg-gray-300 border-1 border-white rounded-xl"
             >
-              <Link href={SERVER_SIGNIN_URL}>
+              <Link href={SERVER_SIGNIN_URL} target="_blank">
                 <UserIcon className="size-6" /> Sign In
               </Link>
             </Button>
@@ -43,7 +47,10 @@ const NameSearchHeader = () => {
               asChild
               className="bg-[#d97706] rounded-xl text-primary-50 h5-semibold md:h6-semibold tracking-wider hover:bg-primary-600 text-primary-50 h5-semibold md:h6-semibold"
             >
-              <a href={SERVER_URL + '#pricing' || '/'}>
+              <a
+                href={SERVER_URL + '#pricing' || '/'}
+                target="_blank"
+              >
                 <PersonStanding className="size-6" /> Start Free Trial
               </a>
             </Button>

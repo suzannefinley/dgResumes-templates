@@ -14,7 +14,7 @@ import {
   APP_DESCRIPTION,
   APP_NAME,
   SERVER_URL,
-  SERVER_EMAIL_LOGO_URL
+  SERVER_LOGO_URL
 } from '@/lib/constants';
 
 export const EmailFooter = () => (
@@ -25,7 +25,7 @@ export const EmailFooter = () => (
           <td align="center">
             <Link href={SERVER_URL}>
               <Img
-                src={SERVER_EMAIL_LOGO_URL}
+                src={SERVER_LOGO_URL}
                 width={150}
                 height={75}
                 alt={`${APP_NAME} logo`}
