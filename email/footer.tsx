@@ -13,7 +13,7 @@ import {
   COMPANY_NAME,
   APP_DESCRIPTION,
   APP_NAME,
-  SERVER_URL,
+  MAIN_APP_URL,
   SERVER_LOGO_URL
 } from '@/lib/constants';
 
@@ -23,7 +23,7 @@ export const EmailFooter = () => (
       <table className="w-full">
         <tr className="w-full">
           <td align="center">
-            <Link href={SERVER_URL}>
+            <Link href={MAIN_APP_URL}>
               <Img
                 src={SERVER_LOGO_URL}
                 width={150}

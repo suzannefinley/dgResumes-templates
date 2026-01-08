@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import {
   APP_NAME,
-  SERVER_URL,
+  MAIN_APP_URL,
   SERVER_SIGNIN_URL
 } from '@/lib/constants';
 import 'dotenv/config';
@@ -15,7 +15,7 @@ const NameSearchHeader = () => {
       <div className="flex items-center py-4 px-2 mr-6">
         <div className="flex items-center">
           <Link
-            href={SERVER_URL}
+            href={MAIN_APP_URL}
             className="flex items-center"
             target="_blank"
           >
@@ -48,7 +48,7 @@ const NameSearchHeader = () => {
               className="bg-[#d97706] rounded-xl text-primary-50 h5-semibold md:h6-semibold tracking-wider hover:bg-primary-600 text-primary-50 h5-semibold md:h6-semibold"
             >
               <a
-                href={SERVER_URL + '#pricing' || '/'}
+                href={MAIN_APP_URL + '#pricing' || '/'}
                 target="_blank"
               >
                 <PersonStanding className="size-6" /> Start Free Trial

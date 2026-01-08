@@ -32,10 +32,10 @@ export async function generateMetadata(): Promise<Metadata> {
         ? [
             {
               name: resume.personalName || undefined,
-              url: process.env.SERVER_URL || ''
+              url: rUrl || ''
             }
           ]
-        : [{ name: 'dgResume', url: process.env.SERVER_URL || '' }],
+        : [{ name: 'dgResume', url: rUrl || '' }],
       creator: 'dgResume',
       publisher: 'dgResume',
       icons: {
@@ -49,15 +49,13 @@ export async function generateMetadata(): Promise<Metadata> {
           : 'dgResume',
         description:
           resume?.tagLine || 'Professional digital resumes',
-        url: process.env.SERVER_URL || 'http://localhost:3000',
+        url: rUrl || 'http://localhost:3000',
         siteName: 'dgResume',
         ...(resume?.subscriberAvatar && {
           images: resume.subscriberAvatar
         })
       },
-      metadataBase: new URL(
-        process.env.SERVER_URL || 'http://localhost:3000'
-      )
+      metadataBase: new URL(rUrl || 'http://localhost:3000')
     };
   }
 
@@ -66,9 +64,7 @@ export async function generateMetadata(): Promise<Metadata> {
     description: 'Professional digital resumes',
     keywords:
       'dgResume, resume builder, digital resume, online resume, portfolio, cv, professional profile',
-    authors: [
-      { name: 'dgResume', url: process.env.SERVER_URL || '' }
-    ],
+    authors: [{ name: 'dgResume', url: rUrl || '' }],
     creator: 'dgResume',
     publisher: 'dgResume',
     icons: {
@@ -79,12 +75,10 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       title: 'dgResume',
       description: 'Professional digital resumes',
-      url: process.env.SERVER_URL || 'http://localhost:3000',
+      url: rUrl || 'http://localhost:3000',
       siteName: 'dgResume'
     },
-    metadataBase: new URL(
-      process.env.SERVER_URL || 'http://localhost:3000'
-    )
+    metadataBase: new URL(rUrl || 'http://localhost:3000')
   };
 }
 

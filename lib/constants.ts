@@ -22,8 +22,8 @@ export const APP_DESCRIPTION =
   process.env.NEXT_PUBLIC_APP_DESCRIPTION ||
   'Empower your journey with a dgResume.';
 
-export const SERVER_URL =
-  process.env.NEXT_PUBLIC_SERVER_URL || 'http://localhost:3000';
+export const MAIN_APP_URL =
+  process.env.NEXT_PUBLIC_MAIN_APP_URL || 'http://localhost:3000';
 
 export const SERVER_SIGNIN_URL =
   process.env.NEXT_PUBLIC_SERVER_SIGNIN_URL ||

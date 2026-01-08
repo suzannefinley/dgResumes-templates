@@ -7,13 +7,13 @@ import {
 import {
   SERVER_LOGO_URL,
   APP_NAME,
-  SERVER_URL
+  MAIN_APP_URL
 } from '@/lib/constants';
 
 export const EmailHeader = () => (
   <Tailwind>
     <Section className="w-full bg-blue-900 mt-2 p-4 rounded-t-lg shadow-md">
-      <Link href={SERVER_URL}>
+      <Link href={MAIN_APP_URL}>
         <Img
           src={SERVER_LOGO_URL}
           width={150}
