@@ -21,7 +21,7 @@ const NameSearchHeader = () => {
             target="_blank"
           >
             <Image
-              src={SERVER_LOGO_URL}
+              src="images/logos/logo.jpg"
               width={173}
               height={64}
               alt={`${APP_NAME} logo`}
