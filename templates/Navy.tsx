@@ -131,7 +131,7 @@ const Navy = ({
           id="hero"
           className="bg-primary-900 text-primary-foreground relative pb-12 pt-16 lg:pb-20 lg:pt-20 undefined"
         >
-          <div className="absolute bottom-0 left-0 right-0 top-0 brightness-[90%]">
+          {/* <div className="absolute bottom-0 left-0 right-0 top-0 brightness-[90%]">
             <Image
               src={bg}
               className="object-cover"
@@ -151,7 +151,7 @@ const Navy = ({
               }}
               alt="blue gradient background"
             />
-          </div>
+          </div> */}
           <div className="container relative z-20 mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex-col  gap-5  text-left py-6 pr-4 pl-8 rounded-xl mt-4 items-center justify-center bg-primary-200/40  backdrop-blur-md ">
               <div className="grid lg:grid-cols-2 gap-10 items-center m-2">
@@ -181,7 +181,7 @@ const Navy = ({
                       Get In Touch
                     </a>
                   </div>
-                  {resume?.resumeUploadUrl || socialMedia ? (
+                  {/* {resume?.resumeUploadUrl || socialMedia ? (
                     <div className="flex flex-row gap-6 justify-center lg:justify-start mt-6">
                       {resume?.resumeUploadUrl && (
                         <Tooltip>
@@ -262,9 +262,9 @@ const Navy = ({
                         </a>
                       )}
                     </div>
-                  ) : null}
+                  ) : null} */}
                 </div>
-                <div
+                {/* <div
                   className="flex justify-center"
                   suppressHydrationWarning={true}
                 >
@@ -297,7 +297,7 @@ const Navy = ({
                       </Tooltip>
                     ) : null}
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -796,13 +796,13 @@ const Navy = ({
         )} */}
       </div>
 
-      <ContactFormDialog
+      {/* <ContactFormDialog
         email={resume.email ?? undefined}
         phone={resume.phone ?? undefined}
         open={showContactForm}
         onClose={() => setShowContactForm(false)}
         subscriberEmail={resume.subscriberEmail}
-      />
+      /> */}
     </div>
   );
 };
