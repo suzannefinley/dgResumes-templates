@@ -15,72 +15,76 @@ import NameSearchResults from '@/components/NameSearchResults';
 //import Footer from '@/components/Footer';
 import NameSearchHeader from '@/components/NameSearchHeader';
 
-// export async function generateMetadata(): Promise<Metadata> {
-//   const headersList = await headers();
-//   const rUrl: string = headersList.get('host') as string;
-//   const resume = await getResumeByUrl(rUrl);
-//console.log('Generating metadata for:', rUrl, resume);
+export async function generateMetadata(): Promise<Metadata> {
+  const headersList = await headers();
+  const rUrl: string = headersList.get('host') as string;
+  const resume = await getResumeByUrl(rUrl);
+  console.log('Generating metadata for:', rUrl, resume);
 
-// if (resume) {
-//   return {
-//     title: resume
-//       ? `${resume.personalName} - dgResume`
-//       : 'dgResume',
-//     description: resume?.tagLine || 'Professional digital resumes',
-//     keywords: `${resume.personalName} resume, dgResume, resume builder, digital resume,online resume, portfolio, cv, professional profile`,
-//     authors: resume
-//       ? [
-//           {
-//             name: resume.personalName || undefined,
-//             url: rUrl || ''
-//           }
-//         ]
-//       : [{ name: 'dgResume', url: rUrl || '' }],
-//     creator: 'dgResume',
-//     publisher: 'dgResume',
-//     icons: {
-//       icon: '/images/logos/icons/favicon.svg',
-//       shortcut: '/images/logos/icons/favicon.svg',
-//       apple: '/images/logos/icons/favicon.svg'
-//     },
-//     openGraph: {
-//       title: resume
-//         ? `${resume.personalName} - dgResume`
-//         : 'dgResume',
-//       description:
-//         resume?.tagLine || 'Professional digital resumes',
-//       url: rUrl || 'http://localhost:3000',
-//       siteName: 'dgResume',
-//       ...(resume?.subscriberAvatar && {
-//         images: resume.subscriberAvatar
-//       })
-//     },
-//     metadataBase: new URL(rUrl || 'http://localhost:3000')
-//   };
-// }
+  if (resume) {
+    return {
+      title: resume
+        ? `${resume.personalName} - dgResume`
+        : 'dgResume',
+      description: resume?.tagLine || 'Professional digital resume',
+      keywords: `${resume.personalName} resume, dgResume, resume builder, digital resume,online resume, portfolio, cv, professional profile`,
+      authors: resume
+        ? [
+            {
+              name: resume.personalName || undefined,
+              url: rUrl || ''
+            }
+          ]
+        : [{ name: 'dgResume', url: rUrl || '' }],
+      creator: 'dgResume',
+      publisher: 'dgResume',
+      icons: {
+        icon: '/images/logos/icons/favicon.svg',
+        shortcut: '/images/logos/icons/favicon.svg',
+        apple: '/images/logos/icons/favicon.svg'
+      },
+      openGraph: {
+        title: resume
+          ? `${resume.personalName} - dgResume`
+          : 'dgResume',
+        description:
+          resume?.tagLine || 'Professional digital resumes',
+        url: rUrl || 'http://localhost:3000',
+        siteName: 'dgResume',
+        ...(resume?.subscriberAvatar && {
+          images: resume.subscriberAvatar
+        })
+      },
+      metadataBase: new URL(rUrl || 'http://localhost:3000')
+    };
+  }
 
-//   return {
-//     title: 'dgResume',
-//     description: 'Professional digital resumes',
-//     keywords:
-//       'dgResume, resume builder, digital resume, online resume, portfolio, cv, professional profile',
-//     authors: [{ name: 'dgResume', url: rUrl || '' }],
-//     creator: 'dgResume',
-//     publisher: 'dgResume',
-//     icons: {
-//       icon: '/images/logos/icons/favicon.svg',
-//       shortcut: '/images/logos/icons/favicon.svg',
-//       apple: '/images/logos/icons/favicon.svg'
-//     },
-//     openGraph: {
-//       title: 'dgResume',
-//       description: 'Professional digital resumes',
-//       url: rUrl || 'http://localhost:3000',
-//       siteName: 'dgResume'
-//     },
-//     metadataBase: new URL(rUrl || 'http://localhost:3000')
-//   };
-// }
+  return {
+    title: 'dgResume',
+    description: 'Professional digital resumes',
+    keywords:
+      'dgResume, resume builder, digital resume, online resume, portfolio, cv, professional profile',
+    authors: [
+      { name: 'dgResume', url: rUrl || '' }
+    ],
+    creator: 'dgResume',
+    publisher: 'dgResume',
+    icons: {
+      icon: '/images/logos/icons/favicon.svg',
+      shortcut: '/images/logos/icons/favicon.svg',
+      apple: '/images/logos/icons/favicon.svg'
+    },
+    openGraph: {
+      title: 'dgResume',
+      description: 'Professional digital resumes',
+      url: rUrl || 'http://localhost:3000',
+      siteName: 'dgResume'
+    },
+    metadataBase: new URL(
+      rUrl || 'http://localhost:3000'
+    )
+  };
+}
 
 export default async function Home() {
   const headersList = await headers();
