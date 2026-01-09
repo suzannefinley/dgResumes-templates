@@ -104,7 +104,7 @@ const Navy = ({
     <div className={`${roboto.className} navy-theme`}>
       <div className="bg-primary text-gray-50 transition-colors duration-300">
         {/* <!-- Sticky Navigation --> */}
-        {/* <nav className="fixed top-0 w-full bg-primary-50/80 backdrop-blur-md z-50 border-b border-gray-200">
+        <nav className="fixed top-0 w-full bg-primary-50/80 backdrop-blur-md z-50 border-b border-gray-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center py-2">
               <div className="text-xl font-bold text-primary-800 items-center flex gap-2">
@@ -124,14 +124,14 @@ const Navy = ({
               </div>
             </div>
           </div>
-        </nav> */}
+        </nav>
 
         {/* Hero Section */}
         <section
           id="hero"
           className="bg-primary-900 text-primary-foreground relative pb-12 pt-16 lg:pb-20 lg:pt-20 undefined"
         >
-          {/* <div className="absolute bottom-0 left-0 right-0 top-0 brightness-[90%]">
+          <div className="absolute bottom-0 left-0 right-0 top-0 brightness-[90%]">
             <Image
               src={bg}
               className="object-cover"
@@ -151,7 +151,7 @@ const Navy = ({
               }}
               alt="blue gradient background"
             />
-          </div> */}
+          </div>
           <div className="container relative z-20 mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex-col  gap-5  text-left py-6 pr-4 pl-8 rounded-xl mt-4 items-center justify-center bg-primary-200/40  backdrop-blur-md ">
               <div className="grid lg:grid-cols-2 gap-10 items-center m-2">
@@ -163,7 +163,7 @@ const Navy = ({
                   <p className="text-xl md:text-2xl text-primary-100 mb-8">
                     {resume.tagLine}
                   </p>
-                  {/* <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start px-2">
+                  <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start px-2">
                     {projects && projects.length > 0 && (
                       <a
                         href="#projects"
@@ -180,8 +180,8 @@ const Navy = ({
                     >
                       Get In Touch
                     </a>
-                  </div> */}
-                  {/* {resume?.resumeUploadUrl || socialMedia ? (
+                  </div>
+                  {resume?.resumeUploadUrl || socialMedia ? (
                     <div className="flex flex-row gap-6 justify-center lg:justify-start mt-6">
                       {resume?.resumeUploadUrl && (
                         <Tooltip>
@@ -262,9 +262,9 @@ const Navy = ({
                         </a>
                       )}
                     </div>
-                  ) : null} */}
+                  ) : null}
                 </div>
-                {/* <div
+                <div
                   className="flex justify-center"
                   suppressHydrationWarning={true}
                 >
@@ -297,13 +297,13 @@ const Navy = ({
                       </Tooltip>
                     ) : null}
                   </div>
-                </div> */}
+                </div>
               </div>
             </div>
           </div>
         </section>
         {/* About Section */}
-        {/* {resume.introduction || resume.introVideo ? (
+        {resume.introduction || resume.introVideo ? (
           <section
             id="about"
             className={
@@ -349,9 +349,9 @@ const Navy = ({
               </div>
             </div>
           </section>
-        ) : null} */}
+        ) : null}
         {/* <!-- Projects Section --> */}
-        {/* {projects && projects.length > 0 && (
+        {projects && projects.length > 0 && (
           <section
             id="projects"
             suppressHydrationWarning
@@ -458,10 +458,10 @@ const Navy = ({
               </div>
             </div>
           </section>
-        )} */}
+        )}
         {/* Skills section */}
 
-        {/* {skills && skills.length > 0 && (
+        {skills && skills.length > 0 && (
           <section
             id="skills"
             suppressHydrationWarning
@@ -493,9 +493,9 @@ const Navy = ({
               </div>
             </div>
           </section>
-        )} */}
+        )}
         {/* <!-- Certifications Section --> */}
-        {/* {certifications && certifications.length > 0 && (
+        {certifications && certifications.length > 0 && (
           <section
             id="certifications"
             suppressHydrationWarning
@@ -534,10 +534,10 @@ const Navy = ({
               </div>
             </div>
           </section>
-        )} */}
+        )}
         {/* <!-- Awards Section --> */}
 
-        {/* {awards && awards.length > 0 && (
+        {awards && awards.length > 0 && (
           <section
             id="awards"
             suppressHydrationWarning
@@ -591,10 +591,10 @@ const Navy = ({
               </div>
             </div>
           </section>
-        )} */}
+        )}
 
         {/* <!-- Reviews Section --> */}
-        {/* {reviews && reviews.length > 0 && (
+        {reviews && reviews.length > 0 && (
           <section
             id="reviews"
             suppressHydrationWarning
@@ -616,10 +616,10 @@ const Navy = ({
               </div>
             </div>
           </section>
-        )} */}
+        )}
 
         {/* <!-- Experience Section --> */}
-        {/* {experience && experience.length > 0 && (
+        {experience && experience.length > 0 && (
           <section
             id="experience"
             suppressHydrationWarning
@@ -727,10 +727,10 @@ const Navy = ({
               </div>
             </div>
           </section>
-        )} */}
+        )}
 
         {/* <!-- Education Section --> */}
-        {/* {education && education.length > 0 && (
+        {education && education.length > 0 && (
           <section
             id="education"
             suppressHydrationWarning
@@ -793,16 +793,16 @@ const Navy = ({
               </div>
             </div>
           </section>
-        )} */}
+        )}
       </div>
 
-      {/* <ContactFormDialog
+      <ContactFormDialog
         email={resume.email ?? undefined}
         phone={resume.phone ?? undefined}
         open={showContactForm}
         onClose={() => setShowContactForm(false)}
         subscriberEmail={resume.subscriberEmail}
-      /> */}
+      />
     </div>
   );
 };
