@@ -26,7 +26,7 @@ const Footer = () => {
         </div>
         <div className="flex justify-center">
           <a
-            href={process.env.MAIN_APP_URL || '/'}
+            href={MAIN_APP_URL || '/'}
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray-700 font-bold hover:underline"

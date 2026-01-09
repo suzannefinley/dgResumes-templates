@@ -104,7 +104,7 @@ const Navy = ({
     <div className={`${roboto.className} navy-theme`}>
       <div className="bg-primary text-gray-50 transition-colors duration-300">
         {/* <!-- Sticky Navigation --> */}
-        <nav className="fixed top-0 w-full bg-primary-50/80 backdrop-blur-md z-50 border-b border-gray-200">
+        {/* <nav className="fixed top-0 w-full bg-primary-50/80 backdrop-blur-md z-50 border-b border-gray-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center py-2">
               <div className="text-xl font-bold text-primary-800 items-center flex gap-2">
@@ -124,7 +124,7 @@ const Navy = ({
               </div>
             </div>
           </div>
-        </nav>
+        </nav> */}
 
         {/* Hero Section */}
         <section
@@ -303,7 +303,7 @@ const Navy = ({
           </div>
         </section>
         {/* About Section */}
-        {resume.introduction || resume.introVideo ? (
+        {/* {resume.introduction || resume.introVideo ? (
           <section
             id="about"
             className={
@@ -349,9 +349,9 @@ const Navy = ({
               </div>
             </div>
           </section>
-        ) : null}
+        ) : null} */}
         {/* <!-- Projects Section --> */}
-        {projects && projects.length > 0 && (
+        {/* {projects && projects.length > 0 && (
           <section
             id="projects"
             suppressHydrationWarning
@@ -458,10 +458,10 @@ const Navy = ({
               </div>
             </div>
           </section>
-        )}
+        )} */}
         {/* Skills section */}
 
-        {skills && skills.length > 0 && (
+        {/* {skills && skills.length > 0 && (
           <section
             id="skills"
             suppressHydrationWarning
@@ -493,9 +493,9 @@ const Navy = ({
               </div>
             </div>
           </section>
-        )}
+        )} */}
         {/* <!-- Certifications Section --> */}
-        {certifications && certifications.length > 0 && (
+        {/* {certifications && certifications.length > 0 && (
           <section
             id="certifications"
             suppressHydrationWarning
@@ -534,10 +534,10 @@ const Navy = ({
               </div>
             </div>
           </section>
-        )}
+        )} */}
         {/* <!-- Awards Section --> */}
 
-        {awards && awards.length > 0 && (
+        {/* {awards && awards.length > 0 && (
           <section
             id="awards"
             suppressHydrationWarning
@@ -591,10 +591,10 @@ const Navy = ({
               </div>
             </div>
           </section>
-        )}
+        )} */}
 
         {/* <!-- Reviews Section --> */}
-        {reviews && reviews.length > 0 && (
+        {/* {reviews && reviews.length > 0 && (
           <section
             id="reviews"
             suppressHydrationWarning
@@ -616,10 +616,10 @@ const Navy = ({
               </div>
             </div>
           </section>
-        )}
+        )} */}
 
         {/* <!-- Experience Section --> */}
-        {experience && experience.length > 0 && (
+        {/* {experience && experience.length > 0 && (
           <section
             id="experience"
             suppressHydrationWarning
@@ -727,10 +727,10 @@ const Navy = ({
               </div>
             </div>
           </section>
-        )}
+        )} */}
 
         {/* <!-- Education Section --> */}
-        {education && education.length > 0 && (
+        {/* {education && education.length > 0 && (
           <section
             id="education"
             suppressHydrationWarning
@@ -793,7 +793,7 @@ const Navy = ({
               </div>
             </div>
           </section>
-        )}
+        )} */}
       </div>
 
       <ContactFormDialog

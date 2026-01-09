@@ -3,6 +3,7 @@ import Link from 'next/link';
 import {
   APP_NAME,
   MAIN_APP_URL,
+  SERVER_LOGO_URL,
   SERVER_SIGNIN_URL
 } from '@/lib/constants';
 import 'dotenv/config';
@@ -20,7 +21,7 @@ const NameSearchHeader = () => {
             target="_blank"
           >
             <Image
-              src="/images/logos/logo.jpg"
+              src={SERVER_LOGO_URL}
               width={173}
               height={64}
               alt={`${APP_NAME} logo`}
