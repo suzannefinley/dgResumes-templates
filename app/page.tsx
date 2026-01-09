@@ -22,6 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
   console.log('Generating metadata for:', rUrl, resume);
 
   if (resume) {
+    try {
     return {
       title: resume
         ? `${resume.personalName} - dgResume`
@@ -57,11 +58,15 @@ export async function generateMetadata(): Promise<Metadata> {
       },
       metadataBase: new URL(rUrl || 'http://localhost:3000')
     };
+    }
+    catch (error) {
+      console.error('Error generating metadata:', error);
+    }
   }
 
   return {
     title: 'dgResume',
-    description: 'Professional digital resumes',
+    description: 'Professional digital resume',
     keywords:
       'dgResume, resume builder, digital resume, online resume, portfolio, cv, professional profile',
     authors: [
