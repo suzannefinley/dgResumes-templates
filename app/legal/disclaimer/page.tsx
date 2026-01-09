@@ -1,19 +1,20 @@
 import '../../globals.css';
 import Image from 'next/image';
+import { MAIN_APP_URL, SERVER_LOGO_URL } from '@/lib/constants';
 
 const Disclaimer = () => {
   return (
     <>
       <div className="flex justify-left bg-blue-800 text-white p-4">
         <a
-          href={process.env.MAIN_APP_URL || '/'}
+          href={MAIN_APP_URL || '/'}
           target="_blank"
           rel="noopener noreferrer"
           className="text-gray-700 font-bold hover:underline"
         >
           <span className="flex justify-center mt-2 mx-2">
             <Image
-              src="/images/logo.svg"
+              src={SERVER_LOGO_URL}
               width={160}
               height={200}
               alt={`${process.env.MAIN_APP_URL} logo`}

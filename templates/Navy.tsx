@@ -163,7 +163,7 @@ const Navy = ({
                   <p className="text-xl md:text-2xl text-primary-100 mb-8">
                     {resume.tagLine}
                   </p>
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start px-2">
+                  {/* <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start px-2">
                     {projects && projects.length > 0 && (
                       <a
                         href="#projects"
@@ -180,7 +180,7 @@ const Navy = ({
                     >
                       Get In Touch
                     </a>
-                  </div>
+                  </div> */}
                   {/* {resume?.resumeUploadUrl || socialMedia ? (
                     <div className="flex flex-row gap-6 justify-center lg:justify-start mt-6">
                       {resume?.resumeUploadUrl && (
