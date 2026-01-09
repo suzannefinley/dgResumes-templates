@@ -17,6 +17,7 @@ import NameSearchHeader from '@/components/NameSearchHeader';
 
 export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
+  console.log('Headers List:', headersList);
   const rUrl: string = headersList.get('host') as string;
   const resume = await getResumeByUrl(rUrl);
   console.log('Generating metadata for:', rUrl, resume);
@@ -60,6 +61,10 @@ export async function generateMetadata(): Promise<Metadata> {
       };
     } catch (error) {
       console.error('Error generating metadata:', error);
+      return {
+        title: 'dgResume',
+        description: 'Professional digital resume'
+      };
     }
   }
 
@@ -87,6 +92,10 @@ export async function generateMetadata(): Promise<Metadata> {
     };
   } catch (error) {
     console.error('Error generating default metadata:', error);
+    return {
+      title: 'dgResume',
+      description: 'Professional digital resume'
+    };
   }
 }
 
