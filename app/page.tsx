@@ -23,20 +23,53 @@ export async function generateMetadata(): Promise<Metadata> {
 
   if (resume) {
     try {
+      return {
+        title: resume
+          ? `${resume.personalName} - dgResume`
+          : 'dgResume',
+        description: resume?.tagLine || 'Professional digital resume',
+        keywords: `${resume.personalName} resume, dgResume, resume builder, digital resume,online resume, portfolio, cv, professional profile`,
+        authors: resume
+          ? [
+              {
+                name: resume.personalName || undefined,
+                url: rUrl || ''
+              }
+            ]
+          : [{ name: 'dgResume', url: rUrl || '' }],
+        creator: 'dgResume',
+        publisher: 'dgResume',
+        icons: {
+          icon: '/images/logos/icons/favicon.svg',
+          shortcut: '/images/logos/icons/favicon.svg',
+          apple: '/images/logos/icons/favicon.svg'
+        },
+        openGraph: {
+          title: resume
+            ? `${resume.personalName} - dgResume`
+            : 'dgResume',
+          description:
+            resume?.tagLine || 'Professional digital resumes',
+          url: rUrl || 'http://localhost:3000',
+          siteName: 'dgResume',
+          ...(resume?.subscriberAvatar && {
+            images: resume.subscriberAvatar
+          })
+        },
+        metadataBase: new URL(rUrl || 'http://localhost:3000')
+      };
+    } catch (error) {
+      console.error('Error generating metadata:', error);
+    }
+  }
+
+  try {
     return {
-      title: resume
-        ? `${resume.personalName} - dgResume`
-        : 'dgResume',
-      description: resume?.tagLine || 'Professional digital resume',
-      keywords: `${resume.personalName} resume, dgResume, resume builder, digital resume,online resume, portfolio, cv, professional profile`,
-      authors: resume
-        ? [
-            {
-              name: resume.personalName || undefined,
-              url: rUrl || ''
-            }
-          ]
-        : [{ name: 'dgResume', url: rUrl || '' }],
+      title: 'dgResume',
+      description: 'Professional digital resume',
+      keywords:
+        'dgResume, resume builder, digital resume, online resume, portfolio, cv, professional profile',
+      authors: [{ name: 'dgResume', url: rUrl || '' }],
       creator: 'dgResume',
       publisher: 'dgResume',
       icons: {
@@ -45,50 +78,16 @@ export async function generateMetadata(): Promise<Metadata> {
         apple: '/images/logos/icons/favicon.svg'
       },
       openGraph: {
-        title: resume
-          ? `${resume.personalName} - dgResume`
-          : 'dgResume',
-        description:
-          resume?.tagLine || 'Professional digital resumes',
+        title: 'dgResume',
+        description: 'Professional digital resumes',
         url: rUrl || 'http://localhost:3000',
-        siteName: 'dgResume',
-        ...(resume?.subscriberAvatar && {
-          images: resume.subscriberAvatar
-        })
+        siteName: 'dgResume'
       },
       metadataBase: new URL(rUrl || 'http://localhost:3000')
     };
-    }
-    catch (error) {
-      console.error('Error generating metadata:', error);
-    }
+  } catch (error) {
+    console.error('Error generating default metadata:', error);
   }
-
-  return {
-    title: 'dgResume',
-    description: 'Professional digital resume',
-    keywords:
-      'dgResume, resume builder, digital resume, online resume, portfolio, cv, professional profile',
-    authors: [
-      { name: 'dgResume', url: rUrl || '' }
-    ],
-    creator: 'dgResume',
-    publisher: 'dgResume',
-    icons: {
-      icon: '/images/logos/icons/favicon.svg',
-      shortcut: '/images/logos/icons/favicon.svg',
-      apple: '/images/logos/icons/favicon.svg'
-    },
-    openGraph: {
-      title: 'dgResume',
-      description: 'Professional digital resumes',
-      url: rUrl || 'http://localhost:3000',
-      siteName: 'dgResume'
-    },
-    metadataBase: new URL(
-      rUrl || 'http://localhost:3000'
-    )
-  };
 }
 
 export default async function Home() {
