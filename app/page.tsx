@@ -17,15 +17,15 @@ import NameSearchHeader from '@/components/NameSearchHeader';
 
 export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
-  for (const [key, value] of headersList.entries()) {
-    console.log(`${key}: ${value}`);
-  }
+  // for (const [key, value] of headersList.entries()) {
+  //   console.log(`${key}: ${value}`);
+  // }
   const rUrl: string = headersList.get('host') as string;
   const referer = headersList.get('referer') || '';
-  console.log(`referer: ${referer}`);
-  console.log(`domain for metadata: ${rUrl}`);
+  // console.log(`referer: ${referer}`);
+  // console.log(`domain for metadata: ${rUrl}`);
   const resume = await getResumeByUrl(rUrl);
-  console.log('Generating metadata for:', rUrl, resume);
+  //console.log('Generating metadata for:', rUrl, resume);
 
   if (resume) {
     try {
