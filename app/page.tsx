@@ -17,8 +17,13 @@ import NameSearchHeader from '@/components/NameSearchHeader';
 
 export async function generateMetadata(): Promise<Metadata> {
   const headersList = await headers();
-  console.log('Headers List:', headersList);
+  for (const [key, value] of headersList.entries()) {
+    console.log(`${key}: ${value}`);
+  }
   const rUrl: string = headersList.get('host') as string;
+  const referer = headersList.get('referer') || '';
+  console.log(`referer: ${referer}`);
+  console.log(`domain for metadata: ${rUrl}`);
   const resume = await getResumeByUrl(rUrl);
   console.log('Generating metadata for:', rUrl, resume);
 
@@ -34,10 +39,15 @@ export async function generateMetadata(): Promise<Metadata> {
           ? [
               {
                 name: resume.personalName || undefined,
-                url: rUrl || ''
+                url: new URL(referer || '').toString()
               }
             ]
-          : [{ name: 'dgResume', url: rUrl || '' }],
+          : [
+              {
+                name: 'dgResume',
+                url: new URL(referer || '').toString()
+              }
+            ],
         creator: 'dgResume',
         publisher: 'dgResume',
         icons: {
@@ -51,13 +61,13 @@ export async function generateMetadata(): Promise<Metadata> {
             : 'dgResume',
           description:
             resume?.tagLine || 'Professional digital resumes',
-          url: rUrl || 'http://localhost:3000',
+          url: new URL(referer || 'http://localhost:3000').toString(),
           siteName: 'dgResume',
           ...(resume?.subscriberAvatar && {
             images: resume.subscriberAvatar
           })
         },
-        metadataBase: new URL(rUrl || 'http://localhost:3000')
+        metadataBase: new URL(referer || 'http://localhost:3000')
       };
     } catch (error) {
       console.error('Error generating metadata:', error);
